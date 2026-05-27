@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Subscription": {
+      "title": "User Subscription",
+      "description": "Tracks trial status and subscription level of a user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "trialStartedAt": { "type": "string", "format": "date-time" },
+        "dailyAttempts": { "type": "object" },
+        "subscriptionType": { "type": "string", "enum": ["none", "weekly", "biweekly", "monthly"] },
+        "subscriptionExpiresAt": { "type": "string", "format": "date-time" },
+        "isAccountActive": { "type": "boolean" }
+      },
+      "required": ["uid", "trialStartedAt", "subscriptionType"]
+    },
+    "Payment": {
+      "title": "Payment Submission",
+      "description": "User submitted payment transaction details for verification.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "plan": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "verified", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "plan", "transactionId", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/subscriptions/{userId}": {
+      "schema": "Subscription",
+      "description": "User subscription and limit tracking"
+    },
+    "/payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "Payment verification queue"
+    },
+    "/workspaces/{workspaceId}": {
+      "schema": "Workspace",
+      "description": "Shared engineering workspaces"
+    },
+    "/workspaces/{workspaceId}/audits": {
+      "schema": "Audit",
+      "description": "Historical code audits"
+    },
+    "/workspaces/{workspaceId}/audit_logs": {
+      "schema": "AuditLog",
+      "description": "Detailed activity tracking"
+    }
+  }
+}

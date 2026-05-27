@@ -1,0 +1,138 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Connection Test Path
+    match /test/connection {
+      allow get: if true;
+    }
+    match /test/{any=**} {
+      allow read: if true;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isFounder() {
+      return isSignedIn() && request.auth.token.email == "azadali201151@gmail.com";
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Subscriptions Match Block
+    match /subscriptions/{userId} {
+      function isValidSubscription(data) {
+        return data.uid is string && 
+               data.uid == userId &&
+               data.trialStartedAt is timestamp &&
+               data.subscriptionType in ['none', 'weekly', 'biweekly', 'monthly'] &&
+               (data.dailyAttempts is map) &&
+               data.isAccountActive is bool &&
+               (!('subscriptionExpiresAt' in data) || data.subscriptionExpiresAt == null || data.subscriptionExpiresAt is timestamp) &&
+               (!('email' in data) || data.email is string) &&
+               (!('displayName' in data) || data.displayName is string);
+      }
+
+      allow get: if isOwner(userId) || isFounder();
+      allow list: if isFounder();
+      
+      // Create is limited to the user themselves initializing their profile
+      allow create: if isOwner(userId) && 
+                       isValidSubscription(incoming()) && 
+                       incoming().subscriptionType == 'none' &&
+                       incoming().trialStartedAt == request.time;
+
+      // Update is allowed for attempts or activation, preserving core identity
+      allow update: if isFounder() || (isOwner(userId) && 
+                        isValidSubscription(incoming()) &&
+                        incoming().uid == existing().uid &&
+                        incoming().trialStartedAt == existing().trialStartedAt && (
+         // Action: Increment Attempts
+         (incoming().diff(existing()).affectedKeys().hasOnly(['dailyAttempts'])) ||
+         // Action: Activation via Payment
+         (incoming().diff(existing()).affectedKeys().hasOnly(['subscriptionType', 'subscriptionExpiresAt', 'isAccountActive']))
+       ));
+      allow delete: if isFounder();
+    }
+
+    // Payments Match Block
+    match /payments/{paymentId} {
+      function isValidPayment(data) {
+        return data.uid is string && 
+               data.uid == request.auth.uid &&
+               data.plan in ['weekly', 'biweekly', 'monthly'] &&
+               (data.status == 'pending' || data.status == 'completed') &&
+               data.createdAt == request.time &&
+               data.transactionId is string &&
+               data.transactionId.size() > 0 &&
+               data.transactionId.size() < 128 &&
+               data.email is string &&
+               data.displayName is string;
+      }
+
+      allow create: if isSignedIn() && isValidId(paymentId) && isValidPayment(incoming());
+      
+      // Users can see their own payment status
+      allow list: if isFounder() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow get: if isFounder() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow update: if isFounder();
+      allow delete: if isFounder();
+    }
+
+    // Workspaces and historical data
+    match /workspaces/{workspaceId} {
+      allow read: if isFounder() || (isSignedIn() && (resource.data.ownerId == request.auth.uid || exists(/databases/$(database)/documents/workspaces/$(workspaceId)/members/$(request.auth.uid))));
+      allow create: if isSignedIn() && incoming().ownerId == request.auth.uid;
+      allow update, delete: if isFounder() || (isSignedIn() && resource.data.ownerId == request.auth.uid);
+      
+      match /members/{memberId} {
+        allow read: if isFounder() || (isSignedIn() && exists(/databases/$(database)/documents/workspaces/$(workspaceId)/members/$(request.auth.uid)));
+        allow create, update: if isSignedIn() && (
+          get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerId == request.auth.uid ||
+          (workspaceId == 'initial' || !exists(/databases/$(database)/documents/workspaces/$(workspaceId))) // Allow during workspace creation batch
+        );
+        allow delete: if isFounder() || (isSignedIn() && get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerId == request.auth.uid);
+      }
+
+      match /audits/{auditId} {
+        // Only members or owner can read/write audits
+        allow read, create: if isSignedIn() && (
+          get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerId == request.auth.uid ||
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)/members/$(request.auth.uid))
+        );
+        allow update, delete: if isFounder() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      }
+
+      match /audit_logs/{logId} {
+        allow read, create: if isSignedIn() && (
+          get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerId == request.auth.uid ||
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)/members/$(request.auth.uid))
+        );
+      }
+    }
+
+    match /reports/{reportId} {
+      allow read, write: if isFounder() || (isSignedIn() && resource.data.ownerId == request.auth.uid);
+    }
+  }
+}

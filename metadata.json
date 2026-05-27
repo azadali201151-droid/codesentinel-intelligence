@@ -1,0 +1,11 @@
+{
+  "name": "CodeSentinel: Principal Reviewer",
+  "description": "Professional-grade AI code review and performance optimization platform for enterprise-scale systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
+    "AI-Powered Code Analysis",
+    "Security Auditing",
+    "Performance Profiling"
+  ]
+}
