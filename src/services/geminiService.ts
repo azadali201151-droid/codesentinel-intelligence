@@ -213,7 +213,7 @@ export async function getHistoryArchive(search?: string, minScore?: number, toke
   return response.json();
 }
 
-// 6. RETRIEVE COMPLETE DETAILS FOR A CODESENTINEL AUDIT REPORT
+// 6. RETRIEVE COMPLETE DETAILS FOR A NEXIS AUDIT REPORT
 export async function getHistoryReportDetails(reportId: string, token?: string): Promise<{ id: string; code: string; review: EngineeringReview; createdAt: string }> {
   const activeToken = token || getSavedAuthToken() || "";
   const response = await fetch(`/api/history/report/${reportId}`, {

@@ -106,9 +106,9 @@ export default function App() {
   const [penTestCpu, setPenTestCpu] = useState(8);
   const [penTestRam, setPenTestRam] = useState(140);
 
-  // CODESENTINEL ENTERPRISE SUITE STATES
+  // NEXIS ENTERPRISE SUITE STATES
   const [activeRole, setActiveRole] = useState<'Auditor' | 'Developer' | 'Guest'>('Developer');
-  const [activeRoleEmail, setActiveRoleEmail] = useState('enterprise.dev@codesentinel.io');
+  const [activeRoleEmail, setActiveRoleEmail] = useState('enterprise.dev@nexis.io');
   const [sentinelToken, setSentinelToken] = useState<string | null>(getSavedAuthToken());
   const [rateLimitInfo, setRateLimitInfo] = useState<{ limit: number; remaining: number } | null>(null);
   const [queueProgress, setQueueProgress] = useState(0);
@@ -178,7 +178,7 @@ export default function App() {
   useEffect(() => {
     const initRole = async () => {
       try {
-        const res = await switchAuthPersona('Developer', 'developer@codesentinel.io');
+        const res = await switchAuthPersona('Developer', 'developer@nexis.io');
         setSentinelToken(res.token);
         const stats = await getRateLimitStats(res.token);
         setRateLimitInfo({ limit: stats.limit, remaining: stats.remaining });
@@ -232,7 +232,7 @@ export default function App() {
       { delay: 1200, log: '🚨 EXPLOIT TARGET FOUND: Raw async useEffect hook on line 11 lacks abort cleanup!', cpu: 78, ram: 480 },
       { delay: 1900, log: '🔥 FLOOD ACTIVE: Initiated component mount/unmount stress loop at 1800 cycles/sec...', cpu: 99, ram: 1240 },
       { delay: 2600, log: '⚡ CORE CPU OVERLOAD: Browser threat indicator flagged! Heap leak spiking (leak rate ~35MB/s)...', cpu: 100, ram: 1920 },
-      { delay: 3400, log: '🛡️ SECURITY INTERCEPT: Hot-patching vulnerabilities with CodeSentinel remediated types...', cpu: 35, ram: 310 },
+      { delay: 3400, log: '🛡️ SECURITY INTERCEPT: Hot-patching vulnerabilities with Nexis remediated types...', cpu: 35, ram: 310 },
       { delay: 4200, log: '✅ IMMUNIZED: Leak vector neutralized. Resource heap state stabilized under load.', cpu: 8, ram: 155 }
     ];
 
@@ -585,8 +585,8 @@ export default function App() {
     setCode(SAMPLE_CODE);
     setReview(SAMPLE_REVIEW);
     setFixedCode(SAMPLE_REVIEW.fullFixedCode);
-    setActiveGithubContext({ repository: "nexify-intelligence/codesentinel-core", branch: "main", commit: "a4f89d3" });
-    setGithubRepo("nexify-intelligence/codesentinel-core");
+    setActiveGithubContext({ repository: "nexify-intelligence/nexis-core", branch: "main", commit: "a4f89d3" });
+    setGithubRepo("nexify-intelligence/nexis-core");
     setGithubBranch("main");
     setGithubCommit("a4f89d3");
 
@@ -645,7 +645,7 @@ export default function App() {
     setError(null);
     const mockUserInstance = {
       uid: "guest_inspector",
-      email: "guest@codesentinel.io",
+      email: "guest@nexis.io",
       displayName: "Guest Inspector",
       emailVerified: true
     };
@@ -797,7 +797,7 @@ export default function App() {
                 </button>
                 <div className="flex flex-col">
                   <h1 className="font-bold tracking-tight text-white uppercase text-xs sm:text-sm leading-none flex items-center gap-2">
-                    CodeSentinel
+                    Nexis
                     {user && (!subData || subData.subscriptionType === 'none') && (
                       <button 
                         onClick={() => setShowUpgrade(true)}
@@ -1931,7 +1931,7 @@ export default function App() {
                         <div className="w-5 h-5 bg-black rounded-full flex items-center justify-center border border-white/20">
                           <ShieldCheck className="w-3 h-3 text-blue-500" />
                         </div>
-                        <span className="text-[10px] font-bold text-white/60">codesentinel-bot [bot] commented 2 minutes ago</span>
+                        <span className="text-[10px] font-bold text-white/60">nexis-bot [bot] commented 2 minutes ago</span>
                       </div>
                       <span className="text-[9px] text-white/20 uppercase font-mono tracking-widest">Bot Automation</span>
                     </div>
@@ -2034,7 +2034,7 @@ export default function App() {
                                         <div className="bg-[#252526] border border-white/10 p-3 rounded shadow-2xl w-64 backdrop-blur-xl">
                                           <div className="flex items-center gap-2 mb-2">
                                             <ShieldAlert className="w-3 h-3 text-yellow-500" />
-                                            <span className="text-[9px] font-bold text-yellow-500 uppercase tracking-widest">CodeSentinel Fix</span>
+                                            <span className="text-[9px] font-bold text-yellow-500 uppercase tracking-widest">Nexis Fix</span>
                                           </div>
                                           <p className="text-[10px] text-white/80 leading-relaxed font-sans mb-2">
                                             {review.criticalIssues.find(iss => problematic)?.title}
@@ -2314,7 +2314,7 @@ export default function App() {
 
       {review && (
         <div className="print-watermark">
-          CodeSentinel Principal Review
+          Nexis Principal Review
         </div>
       )}
     </div>

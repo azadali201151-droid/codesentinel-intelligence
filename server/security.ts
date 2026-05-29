@@ -68,7 +68,7 @@ export function securityAuthMiddleware(req: any, res: Response, next: NextFuncti
   
   if (!token) {
     // Default fallback to Developer role if unauthenticated for basic convenience
-    req.user = { userId: "guest_user", role: "Developer" as UserRole, email: "guest@codesentinel.io" };
+    req.user = { userId: "guest_user", role: "Developer" as UserRole, email: "guest@nexis.io" };
     return next();
   }
   

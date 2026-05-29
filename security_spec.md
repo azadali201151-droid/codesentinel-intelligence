@@ -1,4 +1,4 @@
-# Security Specification: CodeSentinel Enterprise
+# Security Specification: Nexis Enterprise
 
 ## Data Invariants
 1. A Workspace must have exactly one Owner.

@@ -27,7 +27,8 @@ import {
   LogIn,
   UserPlus,
   Rocket,
-  ExternalLink
+  ExternalLink,
+  Mail
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { PLATFORM_FAQS, SECURITY_FAQS, FAQ_SCHEMA } from '../constants/faqs';
@@ -64,22 +65,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="w-7 h-7 sm:w-8 sm:h-8 bg-emerald-500 rounded flex items-center justify-center shadow-lg shadow-emerald-500/20">
               <ShieldCheck className="text-zinc-950 w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <span className="font-bold tracking-tighter text-white uppercase text-base sm:text-lg">CodeSentinel</span>
+            <span className="font-bold tracking-tighter text-white uppercase text-base sm:text-lg">Nexis</span>
           </div>
-          <button 
-            onClick={onEnterWorkspace}
-            disabled={isLoggingIn}
-            className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-emerald-500 hover:text-emerald-400 transition-colors disabled:opacity-50"
-          >
-            {isLoggingIn ? (
-              <RotateCcw className="w-3.5 h-3.5 animate-spin" />
-            ) : isAuthenticated ? (
-              <Rocket className="w-3.5 h-3.5" />
-            ) : (
-              <UserPlus className="w-3.5 h-3.5" />
-            )}
-            {isLoggingIn ? 'Verifying...' : (isAuthenticated ? 'Launch Engine' : 'Sign Up / Launch')}
-          </button>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-zinc-400 hover:text-emerald-500 transition-colors cursor-pointer"
+              title="Contact Founder Azad Ali & Team"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Contact</span>
+            </button>
+            <button 
+              onClick={onEnterWorkspace}
+              disabled={isLoggingIn}
+              className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-emerald-500 hover:text-emerald-400 transition-colors disabled:opacity-50"
+            >
+              {isLoggingIn ? (
+                <RotateCcw className="w-3.5 h-3.5 animate-spin" />
+              ) : isAuthenticated ? (
+                <Rocket className="w-3.5 h-3.5" />
+              ) : (
+                <UserPlus className="w-3.5 h-3.5" />
+              )}
+              {isLoggingIn ? 'Verifying...' : (isAuthenticated ? 'Launch Engine' : 'Sign Up / Launch')}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -125,9 +139,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             transition={{ delay: 0.2 }}
             className="text-lg text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            CodeSentinel is a Principal-level AI auditing engine that detects architectural risks, memory leaks, and compliance gaps. Unlike general AI, it uses a Proof-Based Protocol to eliminate hallucinations and provide evidence-backed security reports.
+            Nexis is a Principal-level Advanced Code Auditor & Debug Engine that detects architectural risks, memory leaks, and compliance gaps. Unlike general analysis, it uses a Proof-Based Protocol to eliminate false positives and provide evidence-backed security reports.
             <br/><br/>
-            Beyond detection, CodeSentinel automatically refactors and repairs entire codebases using Principal-grade optimization directives. It transforms vulnerable logic, inefficient architecture, and legacy systems into production-ready, scalable, and maintainable software, while preserving system integrity and engineering standards.
+            Beyond detection, Nexis automatically refactors and repairs entire codebases using Principal-grade optimization directives. It transforms vulnerable logic, inefficient architecture, and legacy systems into production-ready, scalable, and maintainable software, while preserving system integrity and engineering standards.
             <br/><br/>
             Built for modern developers, startups, and enterprise teams that demand secure, high-performance software at scale.
           </motion.p>
@@ -255,7 +269,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <tr className="bg-white/5">
                   <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-zinc-500 whitespace-nowrap">Capability</th>
                   <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-zinc-500 text-center whitespace-nowrap">Generic AI Tools</th>
-                  <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-emerald-500 text-center bg-emerald-500/5 whitespace-nowrap border-l border-emerald-500/10">CodeSentinel</th>
+                  <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-emerald-500 text-center bg-emerald-500/5 whitespace-nowrap border-l border-emerald-500/10">Nexis</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -301,7 +315,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   Proof-Based <br/><span className="text-zinc-600">Verification Engine.</span>
                 </h2>
                 <p className="text-xl text-zinc-400 leading-relaxed max-w-xl">
-                  CodeSentinel is the only engine that requires <span className="text-white font-bold">mathematical proof</span> of a vulnerability before it surfaces. We don't guess—we verify every logic path.
+                  Nexis is the only engine that requires <span className="text-white font-bold">mathematical proof</span> of a vulnerability before it surfaces. We don't guess—we verify every logic path.
                 </p>
               </div>
               
@@ -388,7 +402,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                             </ul>
                          </div>
                          <div className="space-y-4">
-                            <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-[0.2em] block">CodeSentinel</span>
+                            <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-[0.2em] block">Nexis</span>
                             <ul className="text-[11px] text-emerald-400 space-y-2 font-black">
                                <li className="flex items-center gap-2">
                                   <Check className="w-4 h-4" />
@@ -658,7 +672,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9]">Built to Eliminate <br/><span className="text-zinc-600">AI Hallucinations.</span></h2>
                 <div className="space-y-8 text-xl text-zinc-400 max-w-xl leading-relaxed">
                    <p>Generic AI tools are probabilistic—they guess code paths based on likelihood. This leads to dangerous hallucinations and wasted developer time.</p>
-                   <p className="font-black text-white italic border-l-4 border-emerald-500 pl-8 py-3 bg-emerald-500/5 rounded-r-2xl">CodeSentinel is <span className="text-emerald-500">Binary</span>. We only report what we can mathematically prove from the source.</p>
+                   <p className="font-black text-white italic border-l-4 border-emerald-500 pl-8 py-3 bg-emerald-500/5 rounded-r-2xl">Nexis is <span className="text-emerald-500">Binary</span>. We only report what we can mathematically prove from the source.</p>
                 </div>
              </div>
 
@@ -685,7 +699,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="p-10 glass rounded-[48px] border-emerald-500/20 bg-emerald-500/[0.02] flex flex-col justify-center shadow-2xl relative group/card overflow-hidden">
                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover/card:opacity-10 transition-opacity"><Zap className="w-24 h-24 text-emerald-500" /></div>
                    <p className="text-md text-emerald-500 italic font-black leading-relaxed relative z-10">
-                      “In our 12-month benchmark, CodeSentinel achieved a 0.00% hallucination rate on verified critical vulnerabilities. We don't guess production security.”
+                      “In our 12-month benchmark, Nexis achieved a 0.00% hallucination rate on verified critical vulnerabilities. We don't guess production security.”
                    </p>
                 </div>
              </div>
@@ -735,7 +749,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                    <div className="space-y-12">
                       <div className="space-y-8">
                          <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">Audit-Ready <br/>Evidence Exports.</h3>
-                         <p className="text-zinc-500 text-xl leading-relaxed">CodeSentinel automatically maps every logic finding to specific SOC2 and ISO control points, generating a ready-to-sign evidence trail for your compliance team.</p>
+                         <p className="text-zinc-500 text-xl leading-relaxed">Nexis automatically maps every logic finding to specific SOC2 and ISO control points, generating a ready-to-sign evidence trail for your compliance team.</p>
                       </div>
                       <div className="space-y-6">
                          {[
@@ -884,15 +898,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
       
-      <footer className="py-12 border-t border-white/5 text-center space-y-4">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold">
-          For Any queries please reach out us on{' '}
-          <a href="mailto:nexifyintelligence@gmail.com" className="text-emerald-500 hover:text-emerald-400 transition-colors lowercase tracking-normal">
+      <footer id="contact-footer" className="py-12 border-t border-white/5 text-center space-y-4 px-6">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold flex flex-col md:flex-row items-center justify-center gap-2">
+          <span>For any queries please reach out to us at</span>
+          <a href="mailto:nexifyintelligence@gmail.com,azadali201151@gmail.com?subject=Nexis%20Contact%20Inquiry" className="text-emerald-500 hover:text-emerald-400 transition-colors lowercase tracking-normal font-mono text-[11px]">
             nexifyintelligence@gmail.com
+          </a>
+          <span className="hidden md:inline text-zinc-700">|</span>
+          <span>Contact to Founder Azad Ali:</span>
+          <a href="mailto:azadali201151@gmail.com" className="text-emerald-500 hover:text-emerald-400 transition-colors lowercase tracking-normal font-mono text-[11px]">
+            azadali201151@gmail.com
           </a>
         </div>
         <div className="text-[10px] uppercase tracking-widest text-zinc-600">
-          &copy; 2026 CodeSentinel Technologies. All Rights Reserved. Principal Audit Protocol v2.4.
+          &copy; 2026 Nexis Technologies. All Rights Reserved. Principal Audit Protocol v2.4.
         </div>
       </footer>
     </div>

@@ -41,7 +41,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
   const [isMerged, setIsMerged] = useState(false);
   const [isMerging, setIsMerging] = useState(false);
 
-  const repoPath = githubContext?.repository || 'nexify-intelligence/codesentinel-core';
+  const repoPath = githubContext?.repository || 'nexify-intelligence/nexis-core';
   const targetBranch = githubContext?.branch || 'main';
 
   // Step names
@@ -65,7 +65,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
     // Step-by-step simulation with detailed professional logs
     const runSimulation = async () => {
       // Step 1: Verification
-      setLogs(prev => [...prev, `[system] Initiating CodeSentinel security sync protocol to GitHub...`]);
+      setLogs(prev => [...prev, `[system] Initiating Nexis security sync protocol to GitHub...`]);
       await new Promise(r => setTimeout(r, 1000));
       setLogs(prev => [...prev, `[auth] Loading GitHub API credentials...`]);
       setLogs(prev => [...prev, `[auth] Authorized successfully. Scopes granted: repo, workflow, write:packages`]);
@@ -75,7 +75,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
       await new Promise(r => setTimeout(r, 1200));
       setLogs(prev => [...prev, `[git] Cloning repository: https://github.com/${repoPath}.git`]);
       setLogs(prev => [...prev, `[git] Resolving commit state for ${targetBranch}...`]);
-      setLogs(prev => [...prev, `[git] Created branch: 'codesentinel-security-patch-${Math.floor(Math.random() * 10000)}'`]);
+      setLogs(prev => [...prev, `[git] Created branch: 'nexis-security-patch-${Math.floor(Math.random() * 10000)}'`]);
       setStep(2);
 
       // Step 3: Injecting
@@ -89,7 +89,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
       await new Promise(r => setTimeout(r, 1200));
       setLogs(prev => [...prev, `[git] Packing objects: 100% (3/3), done.`]);
       setLogs(prev => [...prev, `[git] Writing objects: 100% (3/3), 1.2 KiB | 1.2 MiB/s, done.`]);
-      setLogs(prev => [...prev, `[git] Remote branch created: codesentinel-security-patch`]);
+      setLogs(prev => [...prev, `[git] Remote branch created: nexis-security-patch`]);
       setStep(4);
 
       // Step 5: Complete PR Creation
@@ -110,7 +110,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
     setIsMerging(false);
     setIsMerged(true);
     setLogs(prev => [...prev, `[git] Merged Pull Request #41 into ${targetBranch}.`]);
-    setLogs(prev => [...prev, `[system] Branch deleted: codesentinel-security-patch.`]);
+    setLogs(prev => [...prev, `[system] Branch deleted: nexis-security-patch.`]);
   };
 
   if (!isOpen) return null;
@@ -154,7 +154,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
             </div>
             <div className="flex justify-between items-center text-[9px] uppercase tracking-wide">
               <span className="text-zinc-500">PR Source Branch:</span>
-              <span className="font-mono text-zinc-400">codesentinel-security-patch</span>
+              <span className="font-mono text-zinc-400">nexis-security-patch</span>
             </div>
           </div>
 
@@ -262,7 +262,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                 </div>
                 
                 <h2 className="text-base font-bold text-white mb-3">
-                  refactor(security): apply CodeSentinel automated security repairs
+                  refactor(security): apply Nexis automated security repairs
                 </h2>
 
                 <div className="flex flex-wrap items-center gap-2.5">
@@ -276,7 +276,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                   </div>
                   
                   <span className="text-[9px] font-mono text-zinc-500">
-                    <span className="text-zinc-300 font-semibold">codesentinel-bot</span> wants to merge 1 commit into <span className="bg-zinc-850 px-1.5 py-0.5 rounded font-mono text-zinc-300 font-bold">{targetBranch}</span> from <span className="bg-zinc-850 px-1.5 py-0.5 rounded font-mono text-zinc-350">codesentinel-security-patch</span>
+                    <span className="text-zinc-300 font-semibold">nexis-bot</span> wants to merge 1 commit into <span className="bg-zinc-850 px-1.5 py-0.5 rounded font-mono text-zinc-300 font-bold">{targetBranch}</span> from <span className="bg-zinc-850 px-1.5 py-0.5 rounded font-mono text-zinc-350">nexis-security-patch</span>
                   </span>
                 </div>
               </div>
@@ -286,7 +286,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                 {/* PR conversation body */}
                 <div className="glass bg-[#080808]/60 border-white/5 rounded-xl overflow-hidden">
                   <div className="bg-white/5 px-4 py-2 border-b border-white/5 flex justify-between items-center text-[10px] text-zinc-400">
-                    <span className="font-bold">codesentinel-bot [bot] commented</span>
+                    <span className="font-bold">nexis-bot [bot] commented</span>
                     <span className="text-[8px] font-mono tracking-widest uppercase text-white/25">Verified Bot</span>
                   </div>
                   <div className="p-4 space-y-4">
@@ -295,7 +295,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                       <div>
                         <h4 className="text-[11px] font-black uppercase text-emerald-500 tracking-wider">Automated Patch Verified</h4>
                         <p className="text-[10px] text-zinc-400 mt-1 leading-relaxed">
-                          CodeSentinel has successfully patched the critical vulnerabilities detected. AST structural alignment was preserved, complexity scores were optimized, and zero regression leaks were reported in verification layers.
+                          Nexis has successfully patched the critical vulnerabilities detected. AST structural alignment was preserved, complexity scores were optimized, and zero regression leaks were reported in verification layers.
                         </p>
                       </div>
                     </div>

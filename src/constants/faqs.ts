@@ -1,13 +1,13 @@
 export const PLATFORM_FAQS = [
   { 
     id: 7,
-    q: "What is Nexify Intelligence / CodeSentinel?", 
-    a: "CodeSentinel is an AI-powered engineering system that analyzes, audits, and improves software code. It detects security vulnerabilities, architectural issues, and performance problems, and provides intelligent fixes like a senior-level software engineer." 
+    q: "What is Nexify Intelligence / Nexis?", 
+    a: "Nexis is an Advanced Code Auditor & Debug Engine engineering system that analyzes, audits, and improves software code. It detects security vulnerabilities, architectural issues, and performance problems, and provides intelligent fixes like a senior-level software engineer." 
   },
   { 
     id: 2,
     q: "What problems does it solve?", 
-    a: "It helps developers and companies avoid bugs, security risks, and inefficient code. Instead of spending hours on manual code reviews, CodeSentinel instantly identifies issues and suggests production-ready improvements." 
+    a: "It helps developers and companies avoid bugs, security risks, and inefficient code. Instead of spending hours on manual code reviews, Nexis instantly identifies issues and suggests production-ready improvements." 
   },
   { 
     id: 8,
@@ -17,17 +17,17 @@ export const PLATFORM_FAQS = [
   { 
     id: 9,
     q: "Does it only detect issues or also fix code?", 
-    a: "CodeSentinel goes beyond detection. It not only finds problems but also suggests and generates optimized, production-ready fixes to improve your entire codebase structure and performance." 
+    a: "Nexis goes beyond detection. It not only finds problems but also suggests and generates optimized, production-ready fixes to improve your entire codebase structure and performance." 
   },
   { 
     id: 5,
     q: "Does it debug, fixes code, etc.?", 
-    a: "Yes, CodeSentinel is a comprehensive engineering system. It doesn't just surface errors; it performs deep debugging to understand root causes and generates production-level fixes that maintain your architectural standards." 
+    a: "Yes, Nexis is an Advanced Code Auditor & Debug Engine. It doesn't just surface errors; it performs deep debugging to understand root causes and generates production-level fixes that maintain your architectural standards." 
   },
   { 
     id: "report-1",
-    q: "What is the CodeSentinel report?", 
-    a: "The report is a detailed AI-generated analysis of your codebase that highlights security vulnerabilities, architectural flaws, performance issues, and improvement opportunities in a structured, easy-to-read format." 
+    q: "What is the Nexis report?", 
+    a: "The report is a detailed Advanced Code Auditor & Debug Engine analysis of your codebase that highlights security vulnerabilities, architectural flaws, performance issues, and improvement opportunities in a structured, easy-to-read format." 
   },
   { 
     id: "report-2",
@@ -42,7 +42,7 @@ export const PLATFORM_FAQS = [
   { 
     id: "diff",
     q: "How is this different from normal error logs or linters?", 
-    a: "Unlike simple linters, CodeSentinel reports provide deep architectural insights, explain why issues exist, and suggest real production-level fixes instead of just pointing out errors." 
+    a: "Unlike simple linters, Nexis reports provide deep architectural insights, explain why issues exist, and suggest real production-level fixes instead of just pointing out errors." 
   }
 ];
 
@@ -54,8 +54,8 @@ export const SECURITY_FAQS = [
   },
   { 
     id: "compliance",
-    q: "Is CodeSentinel HIPAA/SOC2 compliant?", 
-    a: "Yes. CodeSentinel is built with enterprise security at its core. We do not store PI/PII data locally, and all processing happens in a sandboxed, TLS-encrypted environment." 
+    q: "Is Nexis HIPAA/SOC2 compliant?", 
+    a: "Yes. Nexis is built with enterprise security at its core. We do not store PI/PII data locally, and all processing happens in a sandboxed, TLS-encrypted environment." 
   },
   { 
     id: "retention",
@@ -64,13 +64,13 @@ export const SECURITY_FAQS = [
   },
   { 
     id: "race",
-    q: "Does CodeSentinel detect race conditions?", 
+    q: "Does Nexis detect race conditions?", 
     a: "Yes, our Concurrency Detection engine specifically identifies Time-of-check to time-of-use (TOCTOU) and shared-state race conditions." 
   },
   { 
     id: 6,
     q: "Who we are?", 
-    a: "Nexify Intelligence — Enterprise AI Engineering Systems. Founded by Azad Ali. Nexify Intelligence is focused on building next-generation AI infrastructure that automates software security, architectural optimization, and intelligent code transformation at enterprise scale. Our mission is to empower developers, startups, and organizations with autonomous engineering systems capable of accelerating innovation while maintaining production-grade quality, security, and reliability."
+    a: "Nexify Intelligence — Enterprise Advanced Code Auditor & Debug Engine Engineering Systems. Founded by Azad Ali. Nexify Intelligence is focused on building next-generation infrastructure that automates software security, architectural optimization, and intelligent code transformation at enterprise scale. Our mission is to empower developers, startups, and organizations with autonomous engineering systems capable of accelerating innovation while maintaining production-grade quality, security, and reliability."
   }
 ];
 

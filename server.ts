@@ -687,7 +687,7 @@ export async function runModelAnalysis(code: string): Promise<any> {
   if (!Array.isArray(result.documentation)) result.documentation = [];
   if (typeof result.simplifiedExplanation !== 'string') result.simplifiedExplanation = "Review completed. Minor optimization recommended.";
   if (typeof result.logicalFlow !== 'string') result.logicalFlow = "graph TD;\nA[Input] --> B[Processing] --> C[Output]";
-  if (typeof result.githubComment !== 'string') result.githubComment = "### CodeSentinel Execution Audit Report complete";
+  if (typeof result.githubComment !== 'string') result.githubComment = "### Nexis Execution Audit Report complete";
   if (typeof result.fullFixedCode !== 'string') result.fullFixedCode = code;
 
   return result;

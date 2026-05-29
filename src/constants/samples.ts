@@ -201,7 +201,7 @@ export const SAMPLE_REVIEW: EngineeringReview = {
   E -- "Yes" --> F["Evict Oldest Active Session"];
   E -- "No" --> G["Record Session state securely"];
   G --> H["Grant Access & Stream Pipeline Tasks"];`,
-  simplifiedExplanation: "The CodeSentinel analysis identified critical security and speed issues inside this system. First, the database connection is dangerously open to injection attacks because it merges raw text straight into command strings. Second, anyone can impersonate administrative accounts because secure digital signature checks are bypassed during credentials reading. Third, the system locks its thread loop by using standard synchronous network commands, slowing down or freezing other users in high-volume situations. Finally, the cache stores session logs indefinitely without any limits, which will slowly load up server RAM and lead to a server crash. We applied parameterized database rules, non-blocking asynchronous requests, cryptographic verification guards, and bounded cache collections.",
+  simplifiedExplanation: "The Nexis analysis identified critical security and speed issues inside this system. First, the database connection is dangerously open to injection attacks because it merges raw text straight into command strings. Second, anyone can impersonate administrative accounts because secure digital signature checks are bypassed during credentials reading. Third, the system locks its thread loop by using standard synchronous network commands, slowing down or freezing other users in high-volume situations. Finally, the cache stores session logs indefinitely without any limits, which will slowly load up server RAM and lead to a server crash. We applied parameterized database rules, non-blocking asynchronous requests, cryptographic verification guards, and bounded cache collections.",
   documentation: [
     {
       functionName: "authenticate_user",
@@ -222,7 +222,7 @@ export const SAMPLE_REVIEW: EngineeringReview = {
       returns: "List[str]: Fully deduplicated structured elements."
     }
   ],
-  githubComment: `### 🛡️ CodeSentinel: Enterprise Audit Report
+  githubComment: `### 🛡️ Nexis: Enterprise Audit Report
 > Generated on 5/26/2026 | Confidence Index: HIGH (Strong Rule matches discovered)
 
 #### 📊 Executive Quality Benchmark
