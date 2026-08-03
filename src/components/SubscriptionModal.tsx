@@ -135,7 +135,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
             animate={{ opacity: 1 }} 
             exit={{ opacity: 0 }} 
             onClick={onClose}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[200]" 
+            className="fixed inset-0 bg-transparent z-[200]" 
           />
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -150,7 +150,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
             {step === 'plans' && (
               <div className="space-y-8">
                 <div className="text-center space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full mb-2">
                     <Zap className="w-3 h-3 text-emerald-500" />
                     <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest text-shadow-sm">System Upgrade Required</span>
                   </div>
@@ -166,12 +166,12 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                       className={cn(
                         "relative p-6 rounded-2xl border transition-all cursor-pointer group",
                         selectedPlan.id === plan.id 
-                          ? "bg-emerald-500/5 border-emerald-500 shadow-[0_0_50px_rgba(16,185,129,0.1)]" 
+                          ? "bg-[#00FF66]/5 border-[#00FF66] shadow-[0_0_50px_rgba(16,185,129,0.1)]" 
                           : "bg-white/5 border-white/5 hover:border-white/20"
                       )}
                     >
                       {plan.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 rounded-full">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#00FF66] rounded-full">
                           <span className="text-[8px] font-black text-zinc-950 uppercase tracking-widest">Most Popular</span>
                         </div>
                       )}
@@ -193,7 +193,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                       </ul>
                       <div className={cn(
                         "w-full py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-center",
-                        selectedPlan.id === plan.id ? "bg-emerald-500 text-zinc-950" : "bg-white/5 text-white"
+                        selectedPlan.id === plan.id ? "bg-[#00FF66] text-zinc-950" : "bg-white/5 text-white"
                       )}>
                         {selectedPlan.id === plan.id ? 'Plan Selected' : 'Select Plan'}
                       </div>
@@ -203,7 +203,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
 
                 <div className="flex flex-col sm:flex-row items-center justify-between p-6 bg-zinc-900/50 rounded-2xl border border-white/5 gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center border border-emerald-500/20">
+                    <div className="w-12 h-12 bg-[#00FF66]/10 rounded-xl flex items-center justify-center border border-[#00FF66]/20">
                       <ShieldCheck className="w-6 h-6 text-emerald-500" />
                     </div>
                     <div>
@@ -213,7 +213,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                   </div>
                   <button 
                     onClick={() => setStep('payment')}
-                    className="w-full sm:w-auto px-8 py-4 bg-white text-zinc-950 rounded-xl font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-emerald-400 hover:text-zinc-950 transition-all flex items-center justify-center gap-3 shadow-xl"
+                    className="w-full sm:w-auto px-8 py-4 bg-white text-zinc-950 rounded-xl font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-[#00FF66] hover:text-zinc-950 transition-all flex items-center justify-center gap-3 shadow-xl"
                   >
                     Proceed to Payment
                     <ArrowRight className="w-4 h-4" />
@@ -236,7 +236,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
-                    <div className="p-6 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl space-y-4">
+                    <div className="p-6 bg-[#00FF66]/5 border border-[#00FF66]/10 rounded-2xl space-y-4">
                       <div className="flex items-center gap-2 mb-2">
                         <CreditCard className="w-4 h-4 text-emerald-500" />
                         <span className="text-[10px] font-bold text-white uppercase tracking-widest">Beneficiary Account</span>
@@ -264,7 +264,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                       ))}
                     </div>
 
-                    <div className="flex items-start gap-3 p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-xl">
+                    <div className="flex items-start gap-3 p-4 bg-[#00FF66]/5 border border-[#00FF66]/10 rounded-xl">
                        <AlertCircle className="w-4 h-4 text-emerald-500 shrink-0" />
                        <p className="text-[9px] text-emerald-200/50 leading-relaxed uppercase tracking-wide">Note: Please transfer the equivalent amount in any currency. Slightly higher amounts (to cover conversion fees) are perfectly acceptable and will be verified successfully.</p>
                     </div>
@@ -281,7 +281,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                           placeholder="e.g. T-9823485723"
                           value={txId}
                           onChange={(e) => setTxId(e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-xs text-white font-mono outline-none focus:border-emerald-500/50"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-xs text-white font-mono outline-none focus:border-[#00FF66]/50"
                         />
                       </div>
 
@@ -296,7 +296,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                           />
                           <div className={cn(
                             "w-full aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-3 transition-all",
-                            screenshot ? "border-emerald-500/50 bg-emerald-500/5" : "border-white/10 bg-white/5 hover:border-white/20"
+                            screenshot ? "border-[#00FF66]/50 bg-[#00FF66]/5" : "border-white/10 bg-white/5 hover:border-white/20"
                           )}>
                             {screenshot ? (
                               <div className="relative w-full h-full p-2">
@@ -322,7 +322,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                       </div>
 
                       {isVerifying && (
-                        <div className="p-4 bg-emerald-500/5 border border-emerald-500/20 rounded-xl space-y-2">
+                        <div className="p-4 bg-[#00FF66]/5 border border-[#00FF66]/20 rounded-xl space-y-2">
                           <p className="text-[8px] font-bold text-emerald-500 uppercase tracking-widest flex items-center gap-2">
                              <Loader2 className="w-3 h-3 animate-spin" />
                              Processing Analysis
@@ -345,7 +345,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                       )}
 
                       {verificationResult && !verificationError && !isVerifying && (
-                        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-2">
+                        <div className="p-3 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-xl flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                           <p className="text-[9px] text-emerald-200 font-bold uppercase">Details Extracted: {verificationResult.amount} on {verificationResult.date}</p>
                         </div>
@@ -364,7 +364,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                           "w-full py-4 rounded-xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all flex items-center justify-center gap-3",
                           !txId || !screenshot || isSubmitting || isVerifying 
                             ? "bg-white/5 text-white/20 cursor-not-allowed" 
-                            : "bg-emerald-500 text-zinc-950 shadow-xl shadow-emerald-500/20"
+                            : "bg-[#00FF66] text-zinc-950 shadow-xl shadow-emerald-500/20"
                         )}
                        >
                         {isVerifying ? (
@@ -416,7 +416,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, on
                  </div>
                  <button 
                   onClick={onClose}
-                  className="px-12 py-5 bg-white text-zinc-950 hover:bg-emerald-400 rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] transition-all shadow-2xl shadow-white/10"
+                  className="px-12 py-5 bg-white text-zinc-950 hover:bg-[#00FF66] rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] transition-all shadow-2xl shadow-white/10"
                  >
                   Launch Console
                  </button>

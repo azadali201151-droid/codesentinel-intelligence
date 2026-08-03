@@ -16,7 +16,7 @@ export const ReportPDFTemplate: React.FC<ReportPDFTemplateProps> = ({
 }) => {
   // Get color depending on scores
   const getScoreColor = (score: number) => {
-    if (score >= 8) return 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10';
+    if (score >= 8) return 'text-[#00FF66] border-[#00FF66]/30 bg-[#00FF66]/10';
     if (score >= 5) return 'text-amber-400 border-amber-500/30 bg-amber-500/10';
     return 'text-red-400 border-red-500/30 bg-red-500/10';
   };
@@ -41,14 +41,14 @@ export const ReportPDFTemplate: React.FC<ReportPDFTemplateProps> = ({
       }}
     >
       {/* Dynamic Glow Accents for PDF capture */}
-      <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+      <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] rounded-full bg-[#00FF66]/10 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-100px] left-[-100px] w-[300px] h-[300px] rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
 
       {/* Header Banner */}
       <div className="flex items-start justify-between border-b border-white/5 pb-6">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded bg-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            <div className="w-9 h-9 rounded bg-[#00FF66] flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)]">
               <ShieldCheck className="text-zinc-950 w-5 h-5 stroke-[2]" />
             </div>
             <div>
@@ -66,7 +66,7 @@ export const ReportPDFTemplate: React.FC<ReportPDFTemplateProps> = ({
         </div>
 
         <div className="text-right space-y-1">
-          <span className="inline-block px-2.5 py-1 text-[8px] font-black tracking-widest uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded">
+          <span className="inline-block px-2.5 py-1 text-[8px] font-black tracking-widest uppercase bg-[#00FF66]/10 text-[#00FF66] border border-[#00FF66]/30 rounded">
             Report Certified
           </span>
           <p className="text-[9px] font-mono text-zinc-500">v2.4p-audit-auth</p>
@@ -139,7 +139,7 @@ export const ReportPDFTemplate: React.FC<ReportPDFTemplateProps> = ({
           </h3>
           <span className="text-[8px] font-mono text-emerald-500/80 uppercase">🛡️ SECURE PIPELINE ACTIVE</span>
         </div>
-        <div className="bg-black/80 border border-emerald-500/20 rounded-xl p-5 font-mono text-[9.5px] text-emerald-400 space-y-1.5 shadow-inner">
+        <div className="bg-black/80 border border-[#00FF66]/20 rounded-xl p-5 font-mono text-[9.5px] text-[#00FF66] space-y-1.5 shadow-inner">
           <div className="flex items-center gap-1.5 text-zinc-500">
             <span>[SYSTEM] Init Code Sandbox Environment...</span>
           </div>

@@ -58,7 +58,7 @@ const FaqItem = ({ faq, index, isSecurity = false }: { faq: any, index: number, 
         className="w-full text-left flex items-center justify-between focus:outline-none cursor-pointer"
       >
         <h3 className="text-md font-bold text-white flex items-center gap-3">
-          <span className="text-emerald-500 font-mono">
+          <span className="text-[#00FF66] font-mono">
             {number}.
           </span>
           {faq.q}
@@ -84,7 +84,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   onEnterGuestSandbox
 }) => {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-emerald-500/30 selection:text-emerald-200">
+    <div className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-[#00FF66]/30 selection:text-emerald-200">
       <script type="application/ld+json">
         {JSON.stringify(FAQ_SCHEMA)}
       </script>
@@ -93,7 +93,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-emerald-500 rounded flex items-center justify-center shadow-lg shadow-emerald-500/20">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#00FF66] rounded flex items-center justify-center shadow-lg shadow-emerald-500/20">
               <ShieldCheck className="text-zinc-950 w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <span className="font-bold tracking-tighter text-white uppercase text-base sm:text-lg">Nexis</span>
@@ -104,7 +104,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 e.preventDefault();
                 document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-zinc-400 hover:text-emerald-500 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-zinc-400 hover:text-[#00FF66] transition-colors cursor-pointer"
               title="Contact Founder Azad Ali & Team"
             >
               <Mail className="w-3.5 h-3.5" />
@@ -113,7 +113,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <button 
               onClick={onEnterWorkspace}
               disabled={isLoggingIn}
-              className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-emerald-500 hover:text-emerald-400 transition-colors disabled:opacity-50"
+              className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#00FF66] hover:text-[#00FF66] transition-colors disabled:opacity-50"
             >
               {isLoggingIn ? (
                 <RotateCcw className="w-3.5 h-3.5 animate-spin" />
@@ -131,7 +131,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#00FF66]/5 blur-[120px] rounded-full" />
         </div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -148,10 +148,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full mb-8"
           >
-            <Zap className="w-3 h-3 text-emerald-500" />
-            <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Principal-Level Audit v2.4</span>
+            <Zap className="w-3 h-3 text-[#00FF66]" />
+            <span className="text-[9px] font-bold text-[#00FF66] uppercase tracking-widest">Principal-Level Audit v2.4</span>
           </motion.div>
           
           <motion.h1 
@@ -161,7 +161,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
           >
             Instant, Downloadable <br/>
-            <span className="text-emerald-500">Comprehensive Code Audits.</span>
+            <span className="text-[#00FF66]">Comprehensive Code Audits.</span>
           </motion.h1>
           
           <motion.p 
@@ -211,7 +211,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <div className="pt-2 flex flex-col sm:flex-row gap-3">
                       <button
                         onClick={onEnterGuestSandbox}
-                        className="px-4 py-2 bg-emerald-500 text-zinc-950 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-emerald-400 transition-colors flex items-center gap-1.5"
+                        className="px-4 py-2 bg-[#00FF66] text-zinc-950 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-[#00FF66] transition-colors flex items-center gap-1.5"
                       >
                         <Zap className="w-3.5 h-3.5" />
                         Launch Local Sandbox (No-Auth)
@@ -222,7 +222,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         rel="noopener noreferrer"
                         className="px-4 py-2 bg-white/5 hover:bg-white/10 text-white text-[10px] font-black uppercase tracking-widest rounded-lg border border-white/5 transition-colors flex items-center gap-1.5 justify-center"
                       >
-                        <ExternalLink className="w-3.5 h-3.5 text-emerald-500" />
+                        <ExternalLink className="w-3.5 h-3.5 text-[#00FF66]" />
                         Open App in New Tab
                       </a>
                     </div>
@@ -241,7 +241,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <button 
               onClick={onEnterWorkspace}
               disabled={isLoggingIn}
-              className="group relative px-8 py-4 bg-emerald-500 text-zinc-950 font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-emerald-400 transition-all flex items-center gap-2 shadow-xl shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative px-8 py-4 bg-[#00FF66] text-zinc-950 font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-[#00FF66] transition-all flex items-center gap-2 shadow-xl shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoggingIn ? (
                 <RotateCcw className="w-4 h-4 animate-spin" />
@@ -257,7 +257,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onViewSample}
               className="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-white/10 transition-all flex items-center gap-2"
             >
-              <Eye className="w-4 h-4 text-emerald-500" />
+              <Eye className="w-4 h-4 text-[#00FF66]" />
               Explore Sample Workspace
             </button>
           </motion.div>
@@ -290,7 +290,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <tr className="bg-white/5">
                   <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-zinc-500 whitespace-nowrap">Capability</th>
                   <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-zinc-500 text-center whitespace-nowrap">Generic AI Tools</th>
-                  <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-emerald-500 text-center bg-emerald-500/5 whitespace-nowrap border-l border-emerald-500/10">Nexis</th>
+                  <th className="p-6 text-[10px] uppercase tracking-widest font-bold text-[#00FF66] text-center bg-[#00FF66]/5 whitespace-nowrap border-l border-[#00FF66]/10">Nexis</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -306,11 +306,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { name: 'Architectural reasoning', generic: 'Context-Limited', sentinel: 'Project-Wide' }
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-white/5 transition-colors group">
-                    <td className="p-6 text-sm font-medium text-white group-hover:text-emerald-400 transition-colors">{row.name}</td>
+                    <td className="p-6 text-sm font-medium text-white group-hover:text-[#00FF66] transition-colors">{row.name}</td>
                     <td className="p-6 text-xs text-zinc-500 text-center">{row.generic}</td>
-                    <td className="p-6 text-xs text-emerald-400 font-bold text-center bg-emerald-500/5 border-l border-emerald-500/10">
+                    <td className="p-6 text-xs text-[#00FF66] font-bold text-center bg-[#00FF66]/5 border-l border-[#00FF66]/10">
                       <div className="flex items-center justify-center gap-2">
-                        <Check className="w-3 h-3 text-emerald-500" />
+                        <Check className="w-3 h-3 text-[#00FF66]" />
                         {row.sentinel}
                       </div>
                     </td>
@@ -324,17 +324,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* SECTION 1 — PROOF-BASED SECURITY INTELLIGENCE */}
       <section className="py-24 px-6 overflow-hidden relative" id="proof-intelligence">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00FF66]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             <div className="flex-1 space-y-10">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
-                  <ShieldCheck className="w-3 h-3 text-emerald-500" />
-                  <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Protocol-Level Verification</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full">
+                  <ShieldCheck className="w-3 h-3 text-[#00FF66]" />
+                  <span className="text-[9px] font-bold text-[#00FF66] uppercase tracking-widest">Protocol-Level Verification</span>
                 </div>
                 <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-[0.9]">
-                  Proof-Based <br/><span className="text-zinc-600">Verification Engine.</span>
+                  Proof-Based <br/><span className="text-zinc-400">Verification Engine.</span>
                 </h2>
                 <p className="text-xl text-zinc-400 leading-relaxed max-w-xl">
                   Nexis is the only engine that requires <span className="text-white font-bold">mathematical proof</span> of a vulnerability before it surfaces. We don't guess—we verify every logic path.
@@ -348,8 +348,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { title: "Multi-State Reasoning", desc: "Tracking logic across 50+ file layers" },
                   { title: "Architectural Proofs", desc: "Validating structural integrity rules" }
                 ].map((f, i) => (
-                  <div key={i} className="glass p-5 rounded-2xl border-white/5 hover:border-emerald-500/30 transition-all group/feat cursor-default">
-                    <h4 className="text-white font-bold text-sm mb-1 group-hover/feat:text-emerald-400 transition-colors">{f.title}</h4>
+                  <div key={i} className="glass p-5 rounded-2xl border-white/5 hover:border-[#00FF66]/30 transition-all group/feat cursor-default">
+                    <h4 className="text-white font-bold text-sm mb-1 group-hover/feat:text-[#00FF66] transition-colors">{f.title}</h4>
                     <p className="text-[11px] text-zinc-500 font-mono tracking-tight leading-snug">{f.desc}</p>
                   </div>
                 ))}
@@ -358,7 +358,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="flex items-center gap-6 pt-4">
                 <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] text-white font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
                    Technical Deep Dive
-                   <ArrowRight className="w-3 h-3 text-emerald-500" />
+                   <ArrowRight className="w-3 h-3 text-[#00FF66]" />
                 </button>
                 <div className="flex -space-x-2">
                    {[1,2,3,4].map(i => (
@@ -372,14 +372,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             <div className="flex-1 w-full max-w-xl relative">
-              <div className="absolute -inset-4 bg-emerald-500/10 blur-3xl opacity-50 rounded-full animate-pulse" />
+              <div className="absolute -inset-4 bg-[#00FF66]/10 blur-3xl opacity-50 rounded-full animate-pulse" />
               <div className="glass rounded-[40px] overflow-hidden border border-white/15 shadow-3xl bg-zinc-900/40 backdrop-blur-3xl relative p-1 group">
                  <div className="bg-zinc-950 rounded-[39px] overflow-hidden shadow-2xl">
                    <div className="absolute top-0 right-0 p-8 z-10">
                       <motion.div 
                         animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
                         transition={{ repeat: Infinity, duration: 4 }}
-                        className="px-4 py-1.5 bg-emerald-500 rounded-full text-[10px] font-black uppercase text-zinc-950 shadow-[0_0_30px_rgba(16,185,129,0.5)] border border-white/20"
+                        className="px-4 py-1.5 bg-[#00FF66] rounded-full text-[10px] font-black uppercase text-zinc-950 shadow-[0_0_30px_rgba(16,185,129,0.5)] border border-white/20"
                       >
                         Proof: Verified
                       </motion.div>
@@ -392,26 +392,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                          </div>
                          <div className="space-y-4">
                             <div className="flex items-center gap-4 p-4 bg-white/[0.02] rounded-2xl border border-white/5 relative overflow-hidden group/trace">
-                               <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 group-hover/trace:w-full group-hover/trace:opacity-5 transition-all duration-500" />
-                               <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,1)] scale-75" />
+                               <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#00FF66] group-hover/trace:w-full group-hover/trace:opacity-5 transition-all duration-500" />
+                               <div className="w-3 h-3 rounded-full bg-[#00FF66] shadow-[0_0_10px_rgba(16,185,129,1)] scale-75" />
                                <span className="text-[11px] font-mono text-zinc-300">Auth Controller Entry: /pkg/auth/login.go:112</span>
                             </div>
                             <div className="flex items-center gap-4 p-4 bg-white/[0.02] rounded-2xl border border-white/10 ml-6 relative">
                                <div className="w-1.5 h-6 border-l border-b border-zinc-800 absolute -left-4 -top-3 rounded-bl-lg" />
-                               <div className="w-2 h-2 rounded-full bg-emerald-500/40 scale-75" />
+                               <div className="w-2 h-2 rounded-full bg-[#00FF66]/40 scale-75" />
                                <span className="text-[11px] font-mono text-zinc-400">Parameter Taint: request.RedirectURL</span>
                             </div>
-                            <div className="flex items-center gap-4 p-5 bg-emerald-500/10 rounded-2xl border border-emerald-500/30 ml-12 relative shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-                               <div className="w-1.5 h-6 border-l border-b border-emerald-500/20 absolute -left-4 -top-3 rounded-bl-lg" />
-                               <ShieldAlert className="w-4 h-4 text-emerald-500" />
-                               <span className="text-xs font-mono text-emerald-500 font-black">LEAK PROVEN: UNVALIDATED_REDIRECT</span>
+                            <div className="flex items-center gap-4 p-5 bg-[#00FF66]/10 rounded-2xl border border-[#00FF66]/30 ml-12 relative shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+                               <div className="w-1.5 h-6 border-l border-b border-[#00FF66]/20 absolute -left-4 -top-3 rounded-bl-lg" />
+                               <ShieldAlert className="w-4 h-4 text-[#00FF66]" />
+                               <span className="text-xs font-mono text-[#00FF66] font-black">LEAK PROVEN: UNVALIDATED_REDIRECT</span>
                             </div>
                          </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-10">
                          <div className="space-y-4">
-                            <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-[0.2em] block">Generic Models</span>
+                            <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-[0.2em] block">Generic Models</span>
                             <ul className="text-[11px] text-zinc-500 space-y-2 italic opacity-60">
                                <li className="flex items-center gap-2">
                                   <div className="w-1 h-3 bg-zinc-800 rounded-full" />
@@ -424,8 +424,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                             </ul>
                          </div>
                          <div className="space-y-4">
-                            <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-[0.2em] block">Nexis</span>
-                            <ul className="text-[11px] text-emerald-400 space-y-2 font-black">
+                            <span className="text-[10px] text-[#00FF66] font-bold uppercase tracking-[0.2em] block">Nexis</span>
+                            <ul className="text-[11px] text-[#00FF66] space-y-2 font-black">
                                <li className="flex items-center gap-2">
                                   <Check className="w-4 h-4" />
                                   Literal Evidence
@@ -452,12 +452,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
             <div className="space-y-6">
-               <div className="w-16 h-1.5 bg-emerald-500 rounded-full" />
+               <div className="w-16 h-1.5 bg-[#00FF66] rounded-full" />
                <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-none">Detect Production <br/><span className="text-zinc-500 tracking-normal opacity-50 italic">Critical Failures.</span></h2>
             </div>
             <div className="max-w-xs space-y-4 text-right">
                <p className="text-zinc-500 text-sm font-mono tracking-tighter leading-tight italic">Our engine simulates adversarial payloads to prove exploitability in production environments.</p>
-               <button className="text-[10px] font-black uppercase text-emerald-500 hover:text-white transition-colors tracking-[0.2em]">View Threat Taxonomy &rarr;</button>
+               <button className="text-[10px] font-black uppercase text-[#00FF66] hover:text-white transition-colors tracking-[0.2em]">View Threat Taxonomy &rarr;</button>
             </div>
           </div>
 
@@ -469,7 +469,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { t: "Broken Rate Limiting", d: "Exposed API endpoints without ID-based throttling.", impact: "DDoS / Brute Force", sev: "CRITICAL" },
                   { t: "Session Hijacking", d: "Weak cookie signatures & replay vectors.", impact: "Account Takeover", sev: "HIGH" }
                 ],
-                icon: <Lock className="w-5 h-5 text-emerald-500" />
+                icon: <Lock className="w-5 h-5 text-[#00FF66]" />
               },
               {
                 cat: "Async Logic",
@@ -477,7 +477,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { t: "Race Conditions", d: "Asynchronous state mutation overlaps in workers.", impact: "Data Corruption", sev: "CRITICAL" },
                   { t: "TOCTOU Flaws", d: "Time-of-check to time-of-use leaks in FS.", impact: "Privilege Escalation", sev: "HIGH" }
                 ],
-                icon: <Activity className="w-5 h-5 text-emerald-500" />
+                icon: <Activity className="w-5 h-5 text-[#00FF66]" />
               },
               {
                 cat: "Architecture",
@@ -485,7 +485,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { t: "Memory Leaks", d: "Unclosed resource handles in global singleton.", impact: "System Crash", sev: "CRITICAL" },
                   { t: "Resource Exhaustion", d: "Unbounded caches leading to OOM kills.", impact: "SLA Violation", sev: "HIGH" }
                 ],
-                icon: <Server className="w-5 h-5 text-emerald-500" />
+                icon: <Server className="w-5 h-5 text-[#00FF66]" />
               },
               {
                 cat: "Taint Injection",
@@ -493,7 +493,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   { t: "SQLi / NoSQLi", d: "Untrusted input in query builder logic.", impact: "Data Exfiltration", sev: "CRITICAL" },
                   { t: "SSRF / XSS Vectors", d: "Internal server proxy requests exposure.", impact: "Network Breach", sev: "HIGH" }
                 ],
-                icon: <Terminal className="w-5 h-5 text-emerald-500" />
+                icon: <Terminal className="w-5 h-5 text-[#00FF66]" />
               }
             ].map((section, idx) => (
               <div key={idx} className="glass p-6 rounded-[32px] border-white/5 space-y-8 hover:bg-white/[0.04] transition-all group/vcard relative overflow-hidden">
@@ -501,7 +501,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                    {React.cloneElement(section.icon as React.ReactElement<any>, { className: 'w-12 h-12' })}
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 group-hover/vcard:scale-110 transition-transform shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                  <div className="p-3 bg-[#00FF66]/10 rounded-2xl border border-[#00FF66]/20 group-hover/vcard:scale-110 transition-transform shadow-[0_0_20px_rgba(16,185,129,0.1)]">
                     {section.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white tracking-tight">{section.cat}</h3>
@@ -509,7 +509,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 
                 <div className="space-y-4 relative z-10">
                   {section.issues.map((issue, i) => (
-                    <div key={i} className="group p-5 bg-zinc-950/80 rounded-2xl border border-white/5 space-y-3 hover:border-emerald-500/40 transition-all shadow-xl">
+                    <div key={i} className="group p-5 bg-zinc-950/80 rounded-2xl border border-white/5 space-y-3 hover:border-[#00FF66]/40 transition-all shadow-xl">
                       <div className="flex items-center justify-between">
                         <motion.span 
                           animate={{ opacity: issue.sev === 'CRITICAL' ? [0.6, 1, 0.6] : 1 }}
@@ -520,11 +520,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         )}>{issue.sev}</motion.span>
                         <Fingerprint className="w-3 h-3 text-zinc-800" />
                       </div>
-                      <h4 className="text-sm font-bold text-zinc-100 group-hover:text-emerald-400 transition-colors">{issue.t}</h4>
-                      <p className="text-[10px] text-zinc-600 font-mono leading-relaxed">{issue.d}</p>
+                      <h4 className="text-sm font-bold text-zinc-100 group-hover:text-[#00FF66] transition-colors">{issue.t}</h4>
+                      <p className="text-[10px] text-zinc-400 font-mono leading-relaxed">{issue.d}</p>
                       <div className="pt-2 flex items-center justify-between border-t border-white/5">
                         <span className="text-[7px] text-zinc-500 font-black uppercase tracking-widest whitespace-nowrap">Impact: {issue.impact}</span>
-                        <ArrowRight className="w-2 h-2 text-zinc-800 group-hover:text-emerald-500 transition-colors" />
+                        <ArrowRight className="w-2 h-2 text-zinc-800 group-hover:text-[#00FF66] transition-colors" />
                       </div>
                     </div>
                   ))}
@@ -541,11 +541,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="max-w-7xl mx-auto space-y-20">
           <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
             <div className="max-w-4xl space-y-8">
-               <div className="w-12 h-1 bg-emerald-500 rounded-full" />
-               <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.8]">Comprehensive <br/><span className="text-zinc-600">Downloadable Reports.</span></h2>
+               <div className="w-12 h-1 bg-[#00FF66] rounded-full" />
+               <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.8]">Comprehensive <br/><span className="text-zinc-400">Downloadable Reports.</span></h2>
                <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">Generate a complete, everything-covered final audit document ready to instantly download and share with clients, managers, or teams. Cinema-grade reporting designed for executive decision-makers.</p>
             </div>
-            <button className="px-8 py-4 bg-emerald-500 text-zinc-950 font-black uppercase tracking-widest text-[10px] rounded-2xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(16,185,129,0.2)] flex items-center gap-2">
+            <button className="px-8 py-4 bg-[#00FF66] text-zinc-950 font-black uppercase tracking-widest text-[10px] rounded-2xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(16,185,129,0.2)] flex items-center gap-2">
               <Download className="w-4 h-4" />
               Download Sample Report
             </button>
@@ -558,12 +558,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 {/* Sidebar Mock */}
                 <div className="lg:col-span-3 border-r border-white/5 p-10 space-y-16 bg-white/[0.01] backdrop-blur-3xl">
                    <div>
-                      <h4 className="text-[10px] text-zinc-600 uppercase font-black tracking-[0.4em] mb-10">Integrity Scores</h4>
+                      <h4 className="text-[10px] text-zinc-400 uppercase font-black tracking-[0.4em] mb-10">Integrity Scores</h4>
                       <div className="space-y-10">
                         {[
-                          { label: "Security", val: 9.4, color: "text-emerald-500" },
+                          { label: "Security", val: 9.4, color: "text-[#00FF66]" },
                           { label: "Logic Flow", val: 8.8, color: "text-blue-500" },
-                          { label: "Resilience", val: 9.1, color: "text-emerald-500" },
+                          { label: "Resilience", val: 9.1, color: "text-[#00FF66]" },
                           { label: "Compliance", val: 8.5, color: "text-blue-500" }
                         ].map((s, i) => (
                           <div key={i} className="space-y-4">
@@ -577,7 +577,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                                   whileInView={{ width: `${s.val * 10}%` }}
                                   transition={{ duration: 2, ease: "circOut" }}
                                   className="h-full bg-current rounded-full shadow-[0_0_15px_rgba(16,185,129,0.4)]" 
-                                  style={{ color: s.color === 'text-emerald-500' ? '#10b981' : '#3b82f6' }} 
+                                  style={{ color: s.color === 'text-[#00FF66]' ? '#10b981' : '#3b82f6' }} 
                                 />
                              </div>
                           </div>
@@ -586,9 +586,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                    </div>
 
                    <div className="p-10 rounded-[40px] bg-zinc-950 border border-white/5 text-center space-y-4 shadow-inner group/grade">
-                      <span className="text-6xl font-black text-white leading-none tracking-tighter group-hover/grade:text-emerald-500 transition-colors">A+</span>
-                      <div className="h-0.5 w-12 bg-emerald-500/20 mx-auto" />
-                      <p className="text-[9px] text-emerald-500 font-bold uppercase tracking-[0.3em] italic">TRUST_RESOLVED</p>
+                      <span className="text-6xl font-black text-white leading-none tracking-tighter group-hover/grade:text-[#00FF66] transition-colors">A+</span>
+                      <div className="h-0.5 w-12 bg-[#00FF66]/20 mx-auto" />
+                      <p className="text-[9px] text-[#00FF66] font-bold uppercase tracking-[0.3em] italic">TRUST_RESOLVED</p>
                    </div>
                 </div>
 
@@ -596,15 +596,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="lg:col-span-9 p-10 md:p-16 space-y-20">
                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 border-b border-white/5 pb-12">
                       <div className="space-y-3">
-                         <h3 className="text-3xl font-bold text-white tracking-tight">Repository: <span className="text-emerald-500 italic decoration-emerald-500/30 underline underline-offset-4">sentinel-kernel-v4</span></h3>
+                         <h3 className="text-3xl font-bold text-white tracking-tight">Repository: <span className="text-[#00FF66] italic decoration-emerald-500/30 underline underline-offset-4">sentinel-kernel-v4</span></h3>
                          <div className="flex items-center gap-4">
                             <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full border border-white/5">Session ID: #ENT-99422-AX</span>
-                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                            <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">PROD_SYNC: ACTIVE</span>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#00FF66] shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">PROD_SYNC: ACTIVE</span>
                          </div>
                       </div>
                       <div className="flex items-center gap-6">
-                         <div className="p-3 glass rounded-2xl border-white/10 text-white/50 hover:text-emerald-500 hover:border-emerald-500/30 transition-all cursor-pointer">
+                         <div className="p-3 glass rounded-2xl border-white/10 text-white/50 hover:text-[#00FF66] hover:border-[#00FF66]/30 transition-all cursor-pointer">
                             <RotateCcw className="w-5 h-5" />
                          </div>
                          <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-[10px] text-white font-black uppercase tracking-widest hover:bg-white/10 transition-all">Audit History</button>
@@ -618,8 +618,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                             <span className="text-[11px] text-white/50 uppercase font-black tracking-[0.3em]">Logic Propagation Mapping</span>
                          </div>
                          <div className="p-10 bg-zinc-950/90 rounded-[40px] border border-white/5 font-mono text-[11px] text-zinc-500 space-y-6 leading-relaxed shadow-3xl relative overflow-hidden group/flow">
-                            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover/flow:opacity-20 transition-opacity"><Code2 className="w-20 h-20 text-emerald-500" /></div>
-                            <div className="text-emerald-500/80 font-bold">graph LR;</div>
+                            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover/flow:opacity-20 transition-opacity"><Code2 className="w-20 h-20 text-[#00FF66]" /></div>
+                            <div className="text-[#00FF66]/80 font-bold">graph LR;</div>
                             <div className="pl-6 border-l border-white/5 space-y-4">
                                <div>{"User[Client_Request] -->|Auth| A(Middleware_V1);"}</div>
                                <div>{"A -->|Decrypt| B{Session_Store};"}</div>
@@ -628,19 +628,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                                   <ShieldAlert className="w-4 h-4" />
                                   {"C -->|VULNERABLE| D[Root_Injection_Point];"}
                                </div>
-                               <div className="text-emerald-500/60 font-bold italic">// Refactor directive applied here</div>
+                               <div className="text-[#00FF66]/60 font-bold italic">// Refactor directive applied here</div>
                             </div>
                          </div>
                       </div>
 
                       <div className="space-y-8">
                          <div className="flex items-center gap-3">
-                            <MessageSquareCode className="w-4 h-4 text-emerald-500" />
+                            <MessageSquareCode className="w-4 h-4 text-[#00FF66]" />
                             <span className="text-[11px] text-white/50 uppercase font-black tracking-[0.3em]">Refactoring Directive</span>
                          </div>
                          <div className="glass p-10 rounded-[40px] border-white/15 space-y-8 bg-white/[0.02] relative group/directive overflow-hidden">
-                            <div className="absolute -top-6 -right-6 p-5 bg-emerald-500/10 border border-emerald-500/20 rounded-3xl group-hover/directive:rotate-0 rotate-12 transition-transform duration-700 shadow-2xl">
-                               <Check className="w-8 h-8 text-emerald-500" />
+                            <div className="absolute -top-6 -right-6 p-5 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-3xl group-hover/directive:rotate-0 rotate-12 transition-transform duration-700 shadow-2xl">
+                               <Check className="w-8 h-8 text-[#00FF66]" />
                             </div>
                             <p className="text-lg text-white/95 leading-relaxed font-semibold italic tracking-tight">
                                "Implement HMAC-SHA256 signing on the session payload. Current implementation utilizes base64 without integrity verification, allowing for arbitrary payload mutation and high-order privilege escalation."
@@ -665,13 +665,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <section className="py-24 px-6 overflow-hidden relative" id="hallucination-prevention">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-24">
           <div className="flex-1 order-2 md:order-1 relative">
-             <div className="absolute -inset-40 bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none opacity-50" />
+             <div className="absolute -inset-40 bg-[#00FF66]/10 blur-[150px] rounded-full pointer-events-none opacity-50" />
              <div className="relative group perspective-2000">
                 <div className="relative glass p-16 rounded-[64px] border-white/15 space-y-12 max-w-sm mx-auto shadow-[0_100px_200px_rgba(0,0,0,0.8)] bg-zinc-900/60 backdrop-blur-3xl transform group-hover:rotate-y-12 transition-transform duration-1000">
                    <div className="flex justify-center">
-                      <div className="w-28 h-28 bg-emerald-500/10 rounded-[40px] flex items-center justify-center border-2 border-emerald-500/30 relative overflow-hidden group-hover:scale-110 transition-transform">
-                         <div className="absolute inset-0 bg-emerald-500/5 animate-pulse" />
-                         <ShieldCheck className="w-14 h-14 text-emerald-500 relative z-10 shadow-[0_0_20px_rgba(16,185,129,0.5)]" />
+                      <div className="w-28 h-28 bg-[#00FF66]/10 rounded-[40px] flex items-center justify-center border-2 border-[#00FF66]/30 relative overflow-hidden group-hover:scale-110 transition-transform">
+                         <div className="absolute inset-0 bg-[#00FF66]/5 animate-pulse" />
+                         <ShieldCheck className="w-14 h-14 text-[#00FF66] relative z-10 shadow-[0_0_20px_rgba(16,185,129,0.5)]" />
                       </div>
                    </div>
                    <div className="text-center space-y-6">
@@ -680,8 +680,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         "The vulnerability detected in line 1142 follows a deterministic logic path verified against 5M+ audit samples. Zero false positives."
                       </p>
                       <div className="pt-6 border-t border-white/5 flex items-center justify-center gap-4">
-                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                         <span className="text-[10px] text-emerald-500 font-black tracking-[0.4em] uppercase">Engine_Integrity: OK</span>
+                         <div className="w-2.5 h-2.5 rounded-full bg-[#00FF66] animate-ping" />
+                         <span className="text-[10px] text-[#00FF66] font-black tracking-[0.4em] uppercase">Engine_Integrity: OK</span>
                       </div>
                    </div>
                 </div>
@@ -694,16 +694,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                    <Fingerprint className="w-4 h-4 text-zinc-500" />
                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Anti-Probabilistic Shield</span>
                 </div>
-                <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9]">Built to Eliminate <br/><span className="text-zinc-600">AI Hallucinations.</span></h2>
+                <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9]">Built to Eliminate <br/><span className="text-zinc-400">AI Hallucinations.</span></h2>
                 <div className="space-y-8 text-xl text-zinc-400 max-w-xl leading-relaxed">
                    <p>Generic AI tools are probabilistic—they guess code paths based on likelihood. This leads to dangerous hallucinations and wasted developer time.</p>
-                   <p className="font-black text-white italic border-l-4 border-emerald-500 pl-8 py-3 bg-emerald-500/5 rounded-r-2xl">Nexis is <span className="text-emerald-500">Binary</span>. We only report what we can mathematically prove from the source.</p>
+                   <p className="font-black text-white italic border-l-4 border-[#00FF66] pl-8 py-3 bg-[#00FF66]/5 rounded-r-2xl">Nexis is <span className="text-[#00FF66]">Binary</span>. We only report what we can mathematically prove from the source.</p>
                 </div>
              </div>
 
              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-white/10">
                 <div className="space-y-6">
-                   <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">Truth Mechanisms</span>
+                   <span className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em]">Truth Mechanisms</span>
                    <ul className="space-y-6">
                       {[
                         { t: "Evidence Validation", d: "Literal mapping to source artifacts" },
@@ -712,24 +712,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         { t: "Logic-Chain Audits", d: "End-to-end flow verification" }
                       ].map((item, i) => (
                         <li key={i} className="flex flex-col gap-2 group/truth">
-                           <div className="flex items-center gap-4 text-sm font-black text-zinc-100 group-hover/truth:text-emerald-400 transition-colors">
-                              <Check className="w-5 h-5 text-emerald-500 shrink-0" />
+                           <div className="flex items-center gap-4 text-sm font-black text-zinc-100 group-hover/truth:text-[#00FF66] transition-colors">
+                              <Check className="w-5 h-5 text-[#00FF66] shrink-0" />
                               {item.t || (item as any).f}
                            </div>
-                           <span className="text-[10px] text-zinc-600 font-mono pl-9">{item.d}</span>
+                           <span className="text-[10px] text-zinc-400 font-mono pl-9">{item.d}</span>
                         </li>
                       ))}
                    </ul>
                 </div>
-                <div className="p-10 glass rounded-[48px] border-emerald-500/20 bg-emerald-500/[0.02] flex flex-col justify-center shadow-2xl relative group/card overflow-hidden">
-                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover/card:opacity-10 transition-opacity"><Zap className="w-24 h-24 text-emerald-500" /></div>
-                   <p className="text-md text-emerald-500 italic font-black leading-relaxed relative z-10">
+                <div className="p-10 glass rounded-[48px] border-[#00FF66]/20 bg-[#00FF66]/[0.02] flex flex-col justify-center shadow-2xl relative group/card overflow-hidden">
+                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover/card:opacity-10 transition-opacity"><Zap className="w-24 h-24 text-[#00FF66]" /></div>
+                   <p className="text-md text-[#00FF66] italic font-black leading-relaxed relative z-10">
                       “In our 12-month benchmark, Nexis achieved a 0.00% hallucination rate on verified critical vulnerabilities. We don't guess production security.”
                    </p>
                 </div>
              </div>
              <div className="pt-8">
-                <button className="px-10 py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] text-white font-black uppercase tracking-[0.3em] hover:bg-emerald-500 hover:text-zinc-950 transition-all shadow-2xl">The Truth Protocol Whitepaper</button>
+                <button className="px-10 py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] text-white font-black uppercase tracking-[0.3em] hover:bg-[#00FF66] hover:text-zinc-950 transition-all shadow-2xl">The Truth Protocol Whitepaper</button>
              </div>
           </div>
         </div>
@@ -744,7 +744,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                    <Globe className="w-4 h-4 text-blue-500" />
                    <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">Global Governance Mapping</span>
                 </div>
-                <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.85]">Compliance <br/><span className="text-zinc-600">Intelligence.</span></h2>
+                <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.85]">Compliance <br/><span className="text-zinc-400">Intelligence.</span></h2>
              </div>
              <p className="text-zinc-500 text-xl font-medium max-w-xs text-right leading-relaxed italic hidden lg:block opacity-60">Audit-ready documentation and evidence trails for global regulatory frameworks.</p>
           </div>
@@ -798,7 +798,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                             <div className="flex gap-2.5">
                                <div className="w-3.5 h-3.5 rounded-full bg-red-400 shadow-lg shadow-red-400/20" />
                                <div className="w-3.5 h-3.5 rounded-full bg-yellow-400 shadow-lg shadow-yellow-400/20" />
-                               <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/20" />
+                               <div className="w-3.5 h-3.5 rounded-full bg-[#00FF66] shadow-lg shadow-emerald-400/20" />
                             </div>
                             <span className="text-[11px] text-zinc-500 font-mono font-black tracking-widest bg-white/5 px-4 py-1.5 rounded-full">SOC2_EVIDENCE_V2.PDF</span>
                          </div>
@@ -824,17 +824,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* SECTION 6 — ZERO-RETENTION PRIVACY ARCHITECTURE */}
       <section className="py-24 px-6 relative overflow-hidden bg-zinc-950" id="privacy">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl opacity-[0.05]">
-           <div className="w-full aspect-square border-2 border-emerald-500/30 rounded-full border-dashed animate-spin-slow" />
+           <div className="w-full aspect-square border-2 border-[#00FF66]/30 rounded-full border-dashed animate-spin-slow" />
         </div>
 
         <div className="max-w-6xl mx-auto text-center space-y-24 relative z-10">
           <div className="space-y-10">
              <div className="flex justify-center">
                 <div className="w-24 h-24 bg-zinc-900 border border-white/15 rounded-[40px] flex items-center justify-center rotate-45 group hover:rotate-90 transition-transform duration-700 shadow-[0_50px_100px_rgba(0,0,0,0.6)]">
-                   <Lock className="w-12 h-12 text-emerald-500 -rotate-45 group-hover:-rotate-90 transition-transform duration-700" />
+                   <Lock className="w-12 h-12 text-[#00FF66] -rotate-45 group-hover:-rotate-90 transition-transform duration-700" />
                 </div>
              </div>
-             <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-none">Zero-Retention <br/><span className="text-zinc-600 italic decoration-zinc-800 underline underline-offset-8">Privacy Architecture.</span></h2>
+             <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-none">Zero-Retention <br/><span className="text-zinc-400 italic decoration-zinc-800 underline underline-offset-8">Privacy Architecture.</span></h2>
              <p className="text-zinc-500 text-2xl font-medium max-w-3xl mx-auto leading-relaxed">Your source code is never stored, never used for training, and exists only in ephemeral containers during the audit duration.</p>
           </div>
 
@@ -847,31 +847,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                { icon: <Server className="w-6 h-6" />, t: "Volatile Telemetry", d: "System logs are purged automatically every 30 seconds." },
                { icon: <Fingerprint className="w-6 h-6" />, t: "Anonymized Entry", d: "PII and hardcoded secrets scrubbed before analysis." }
              ].map((p, i) => (
-               <div key={i} className="p-12 glass rounded-[56px] border-white/5 space-y-8 hover:border-emerald-500/30 transition-all hover:bg-white/[0.02] group/pcard shadow-2xl">
-                  <div className="text-emerald-500 inline-block p-5 bg-emerald-500/10 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform">
+               <div key={i} className="p-12 glass rounded-[56px] border-white/5 space-y-8 hover:border-[#00FF66]/30 transition-all hover:bg-white/[0.02] group/pcard shadow-2xl">
+                  <div className="text-[#00FF66] inline-block p-5 bg-[#00FF66]/10 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform">
                      {p.icon}
                   </div>
                   <div className="space-y-4">
                      <h4 className="text-white font-black text-2xl tracking-tight leading-none">{p.t}</h4>
-                     <p className="text-zinc-600 text-sm font-mono leading-relaxed">{p.d}</p>
+                     <p className="text-zinc-400 text-sm font-mono leading-relaxed">{p.d}</p>
                   </div>
                </div>
              ))}
           </div>
 
           <div className="p-16 rounded-[64px] bg-zinc-900/50 border border-white/10 relative group/privacy overflow-hidden shadow-[0_100px_200px_rgba(0,0,0,0.8)]">
-             <div className="absolute inset-0 bg-emerald-500/[0.03] blur-[120px] opacity-0 group-hover/privacy:opacity-100 transition-opacity duration-1000" />
+             <div className="absolute inset-0 bg-[#00FF66]/[0.03] blur-[120px] opacity-0 group-hover/privacy:opacity-100 transition-opacity duration-1000" />
              <div className="max-w-4xl mx-auto space-y-10 relative z-10">
                 <p className="text-zinc-400 text-2xl font-semibold leading-relaxed italic">
-                   “Your source code exists only as temporary state during active analysis and is <span className="text-emerald-500 font-black tracking-[0.2em] uppercase decoration-emerald-800 underline underline-offset-8">immediately purged</span>. We don't build our products on our customers' secrets.”
+                   “Your source code exists only as temporary state during active analysis and is <span className="text-[#00FF66] font-black tracking-[0.2em] uppercase decoration-emerald-800 underline underline-offset-8">immediately purged</span>. We don't build our products on our customers' secrets.”
                 </p>
                 <div className="flex justify-center gap-4">
-                   <div className="px-6 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-[10px] text-emerald-500 font-black uppercase tracking-widest">Complies with GDPR Article 32</div>
-                   <div className="px-6 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-[10px] text-emerald-500 font-black uppercase tracking-widest">CCPA Certified Protocol</div>
+                   <div className="px-6 py-2 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full text-[10px] text-[#00FF66] font-black uppercase tracking-widest">Complies with GDPR Article 32</div>
+                   <div className="px-6 py-2 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full text-[10px] text-[#00FF66] font-black uppercase tracking-widest">CCPA Certified Protocol</div>
                 </div>
              </div>
           </div>
-          <button className="px-12 py-6 bg-white/5 border border-white/10 rounded-2xl text-[11px] text-emerald-500 font-black uppercase tracking-[0.4em] hover:bg-emerald-500 hover:text-zinc-950 transition-all shadow-2xl">Download Security Whitepaper</button>
+          <button className="px-12 py-6 bg-white/5 border border-white/10 rounded-2xl text-[11px] text-[#00FF66] font-black uppercase tracking-[0.4em] hover:bg-[#00FF66] hover:text-zinc-950 transition-all shadow-2xl">Download Security Whitepaper</button>
         </div>
       </section>
 
@@ -899,7 +899,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             whileTap={!isLoggingIn ? { scale: 0.98 } : {}}
             onClick={onEnterWorkspace}
             disabled={isLoggingIn}
-            className="w-full sm:w-auto px-8 md:px-16 py-4 md:py-6 bg-emerald-500 text-zinc-950 font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] text-xs md:text-sm rounded-xl md:rounded-2xl hover:bg-emerald-400 transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)] relative z-10 disabled:opacity-50 flex items-center justify-center gap-4 mx-auto"
+            className="w-full sm:w-auto px-8 md:px-16 py-4 md:py-6 bg-[#00FF66] text-zinc-950 font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] text-xs md:text-sm rounded-xl md:rounded-2xl hover:bg-[#00FF66] transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)] relative z-10 disabled:opacity-50 flex items-center justify-center gap-4 mx-auto"
           >
             {isLoggingIn ? (
               <RotateCcw className="w-5 h-5 animate-spin" />
@@ -916,16 +916,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <footer id="contact-footer" className="py-12 border-t border-white/5 text-center space-y-4 px-6">
         <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold flex flex-col md:flex-row items-center justify-center gap-2">
           <span>For any queries please reach out to us at</span>
-          <a href="mailto:nexifyintelligence@gmail.com,azadali201151@gmail.com?subject=Nexis%20Contact%20Inquiry" className="text-emerald-500 hover:text-emerald-400 transition-colors lowercase tracking-normal font-mono text-[11px]">
+          <a href="mailto:nexifyintelligence@gmail.com,azadali201151@gmail.com?subject=Nexis%20Contact%20Inquiry" className="text-[#00FF66] hover:text-[#00FF66] transition-colors lowercase tracking-normal font-mono text-[11px]">
             nexifyintelligence@gmail.com
           </a>
           <span className="hidden md:inline text-zinc-700">|</span>
           <span>Contact to Founder Azad Ali:</span>
-          <a href="mailto:azadali201151@gmail.com" className="text-emerald-500 hover:text-emerald-400 transition-colors lowercase tracking-normal font-mono text-[11px]">
+          <a href="mailto:azadali201151@gmail.com" className="text-[#00FF66] hover:text-[#00FF66] transition-colors lowercase tracking-normal font-mono text-[11px]">
             azadali201151@gmail.com
           </a>
         </div>
-        <div className="text-[10px] uppercase tracking-widest text-zinc-600">
+        <div className="text-[10px] uppercase tracking-widest text-zinc-400">
           &copy; 2026 Nexis Technologies. All Rights Reserved. Principal Audit Protocol v2.4.
         </div>
       </footer>

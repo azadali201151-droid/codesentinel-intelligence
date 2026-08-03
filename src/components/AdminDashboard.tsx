@@ -90,7 +90,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-transparent"
       />
       
       <motion.div 
@@ -102,7 +102,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
         {/* Header */}
         <div className="p-6 border-b border-white/5 flex items-center justify-between bg-zinc-900/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-[#00FF66]/10 border border-[#00FF66]/20 flex items-center justify-center">
               <Shield className="w-5 h-5 text-emerald-500" />
             </div>
             <div>
@@ -123,13 +123,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
           <div className="flex bg-zinc-900 rounded-lg p-1">
             <button 
               onClick={() => setActiveTab('payments')}
-              className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'payments' ? 'bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
+              className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'payments' ? 'bg-[#00FF66] text-zinc-950 shadow-lg shadow-emerald-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
             >
               Payment Logs
             </button>
             <button 
               onClick={() => setActiveTab('subscriptions')}
-              className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'subscriptions' ? 'bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
+              className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'subscriptions' ? 'bg-[#00FF66] text-zinc-950 shadow-lg shadow-emerald-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
             >
               User Access
             </button>
@@ -142,7 +142,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
               placeholder="Search by TID or Email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-zinc-900 border border-white/5 rounded-lg pl-10 pr-4 py-2 text-sm text-zinc-300 outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full bg-zinc-900 border border-white/5 rounded-lg pl-10 pr-4 py-2 text-sm text-zinc-300 outline-none focus:border-[#00FF66]/50 transition-all"
             />
           </div>
 
@@ -163,7 +163,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
-                className={`mb-6 p-4 rounded-xl flex items-center gap-3 border ${status.type === 'success' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' : 'bg-red-500/10 border-red-500/20 text-red-500'}`}
+                className={`mb-6 p-4 rounded-xl flex items-center gap-3 border ${status.type === 'success' ? 'bg-[#00FF66]/10 border-[#00FF66]/20 text-emerald-500' : 'bg-red-500/10 border-red-500/20 text-red-500'}`}
               >
                 {status.type === 'success' ? <CheckCircle2 className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
                 <p className="text-sm font-medium">{status.msg}</p>
@@ -181,7 +181,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
               ) : (
                 <div className="grid gap-3">
                   {filteredPayments.map((p) => (
-                    <div key={p.id} className="p-4 bg-zinc-900/50 border border-white/5 rounded-xl hover:border-emerald-500/20 transition-all group">
+                    <div key={p.id} className="p-4 bg-zinc-900/50 border border-white/5 rounded-xl hover:border-[#00FF66]/20 transition-all group">
                       <div className="flex flex-wrap items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
@@ -190,7 +190,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
                           <div>
                             <div className="flex items-center gap-2 mb-1">
                               <span className="text-xs font-bold text-zinc-300 font-mono uppercase tracking-tighter">TID: {p.transactionId}</span>
-                              <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest ${p.status === 'completed' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'}`}>
+                              <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest ${p.status === 'completed' ? 'bg-[#00FF66]/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'}`}>
                                 {p.status}
                               </span>
                             </div>
@@ -227,7 +227,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
               ) : (
                 <div className="grid gap-3">
                   {filteredSubs.map((s) => (
-                    <div key={s.id} className="p-4 bg-zinc-900/50 border border-white/5 rounded-xl hover:border-emerald-500/20 transition-all group">
+                    <div key={s.id} className="p-4 bg-zinc-900/50 border border-white/5 rounded-xl hover:border-[#00FF66]/20 transition-all group">
                       <div className="flex flex-wrap items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
@@ -243,7 +243,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose,
                           <div className="text-right">
                             <p className="text-[10px] text-zinc-500 uppercase font-bold tracking-widest mb-1">Status</p>
                             <div className="flex items-center gap-2">
-                              <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest ${s.subscriptionType !== 'none' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-zinc-800 text-zinc-500'}`}>
+                              <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest ${s.subscriptionType !== 'none' ? 'bg-[#00FF66]/10 text-emerald-500' : 'bg-zinc-800 text-zinc-500'}`}>
                                 {s.subscriptionType}
                               </span>
                             </div>

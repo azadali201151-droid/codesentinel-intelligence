@@ -976,7 +976,7 @@ export default function App() {
   });
 
   return (
-    <div className={cn("min-h-screen bg-zinc-950 text-zinc-300 selection:bg-emerald-500/30 selection:text-emerald-200 transition-colors duration-300", !isDarkMode && "light-theme")}>
+    <div className={cn("min-h-screen bg-zinc-950 text-zinc-300 selection:bg-[#00FF66]/30 selection:text-emerald-200 transition-colors duration-300", !isDarkMode && "light-theme")}>
       {/* Top Navigation */}
       <header className="fixed top-0 w-full h-16 border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl z-50 no-print flex items-center">
         <div className="h-full w-full flex items-center overflow-x-auto px-4 sm:px-6 scrollbar-hide [&::-webkit-scrollbar]:hidden">
@@ -997,7 +997,7 @@ export default function App() {
                       <div className="flex items-center gap-1.5">
                         <span className={cn(
                           "text-[7px] font-bold uppercase tracking-widest truncate",
-                          user && subData && subData.subscriptionType !== 'none' ? "text-amber-500" : "text-emerald-500"
+                          user && subData && subData.subscriptionType !== 'none' ? "text-amber-500" : "text-[#00FF66]"
                         )}>
                           {user && subData && subData.subscriptionType !== 'none' ? subData.subscriptionType : 'FREE'}_PLAN
                         </span>
@@ -1010,7 +1010,7 @@ export default function App() {
                               e.stopPropagation();
                               setShowUpgrade(true);
                             }}
-                            className="p-0.5 bg-emerald-500 text-zinc-950 rounded-sm hover:bg-emerald-400 transition-colors"
+                            className="p-0.5 bg-[#00FF66] text-zinc-950 rounded-sm hover:bg-[#00FF66] transition-colors"
                             title="Upgrade Now"
                           >
                             <Zap className="w-2.5 h-2.5 fill-current" />
@@ -1040,7 +1040,7 @@ export default function App() {
                     "w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center shadow-lg shrink-0 transition-all duration-500",
                     user && subData && subData.subscriptionType !== 'none' 
                       ? "bg-gradient-to-br from-amber-400 to-amber-600 shadow-amber-500/40" 
-                      : "bg-emerald-500 shadow-emerald-500/20"
+                      : "bg-[#00FF66] shadow-emerald-500/20"
                   )}
                 >
                   {user && subData && subData.subscriptionType !== 'none' ? (
@@ -1055,14 +1055,14 @@ export default function App() {
                     {user && (!subData || subData.subscriptionType === 'none') && (
                       <button 
                         onClick={() => setShowUpgrade(true)}
-                        className="p-1 sm:p-1.5 bg-emerald-500 text-zinc-950 rounded-lg hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] animate-pulse"
+                        className="p-1 sm:p-1.5 bg-[#00FF66] text-zinc-950 rounded-lg hover:bg-[#00FF66] transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] animate-pulse"
                         title="Pay Fee / Upgrade"
                       >
                         <Zap className="w-3 h-3 fill-current" />
                       </button>
                     )}
                   </h1>
-                  <p className="text-[8px] sm:text-[10px] text-emerald-500 font-bold font-mono tracking-widest uppercase mt-0.5">Principal Engine</p>
+                  <p className="text-[8px] sm:text-[10px] text-[#00FF66] font-bold font-mono tracking-widest uppercase mt-0.5">Principal Engine</p>
                 </div>
               </div>
             </div>
@@ -1071,7 +1071,7 @@ export default function App() {
               {user && (subData === null || subData?.subscriptionType === 'none') && (
                 <button 
                   onClick={() => setShowUpgrade(true)}
-                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-emerald-500 text-zinc-950 rounded-full hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] group no-print shrink-0"
+                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-[#00FF66] text-zinc-950 rounded-full hover:bg-[#00FF66] transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] group no-print shrink-0"
                   title="Pay Fee to unlock unlimited access"
                 >
                   <Zap className="w-3 h-3 fill-current group-hover:scale-110 transition-transform" />
@@ -1082,8 +1082,8 @@ export default function App() {
 
               {user && subData && subData.subscriptionType !== 'none' && (
                 <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-white/5 border border-white/10 rounded-full no-print shrink-0 cursor-help" title={`${subData.subscriptionType.toUpperCase()} Subscription`}>
-                  <ShieldCheck className="w-3 h-3 text-emerald-500" />
-                  <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">
+                  <ShieldCheck className="w-3 h-3 text-[#00FF66]" />
+                  <span className="text-[9px] font-bold text-[#00FF66] uppercase tracking-widest">
                     {getRemainingDays(subData.subscriptionExpiresAt)} Days Left
                   </span>
                 </div>
@@ -1092,17 +1092,17 @@ export default function App() {
               {user && attemptsLeft !== null && (!subData || subData.subscriptionType === 'none') && (
                 <button 
                   onClick={() => setShowUpgrade(true)}
-                  className="flex items-center gap-1.5 px-2 py-1 bg-white/5 border border-white/10 rounded-full hover:border-emerald-500/30 transition-all group no-print shrink-0"
+                  className="flex items-center gap-1.5 px-2 py-1 bg-white/5 border border-white/10 rounded-full hover:border-[#00FF66]/30 transition-all group no-print shrink-0"
                 >
-                  <Clock className="w-3 h-3 text-emerald-500" />
+                  <Clock className="w-3 h-3 text-[#00FF66]" />
                   <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
                     {attemptsLeft > 0 ? `${attemptsLeft} left` : 'Limit'}
                   </span>
                 </button>
               )}
-              <div className="flex items-center gap-1.5 px-1.5 sm:px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full whitespace-nowrap shrink-0">
-                <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[8px] sm:text-[10px] text-emerald-500 font-bold font-mono tracking-widest uppercase">Shield Active</span>
+              <div className="flex items-center gap-1.5 px-1.5 sm:px-3 py-1 bg-[#00FF66]/10 border border-[#00FF66]/20 rounded-full whitespace-nowrap shrink-0">
+                <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00FF66] animate-pulse" />
+                <span className="text-[8px] sm:text-[10px] text-[#00FF66] font-bold font-mono tracking-widest uppercase">Shield Active</span>
               </div>
               <button 
                 onClick={() => setIsDarkMode(!isDarkMode)} 
@@ -1122,7 +1122,7 @@ export default function App() {
                       onClick={() => setShowHistory(!showHistory)}
                       className={cn(
                         "flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all text-[10px] font-bold uppercase tracking-widest",
-                        showHistory ? "bg-emerald-500 text-zinc-950" : "text-white/40 hover:text-white bg-white/5"
+                        showHistory ? "bg-[#00FF66] text-zinc-950" : "text-white/40 hover:text-white bg-white/5"
                       )}
                     >
                       <History className="w-4 h-4" />
@@ -1142,7 +1142,7 @@ export default function App() {
               ) : (
                 <div className="flex items-center gap-4 shrink-0">
                   <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/5 rounded-full">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00FF66]/50" />
                     <span className="text-[8px] text-zinc-500 font-bold tracking-widest uppercase">SLA_STABLE</span>
                   </div>
                   <button 
@@ -1165,14 +1165,14 @@ export default function App() {
         <AnimatePresence>
           {showHistory && (
             <>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowHistory(false)} className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] no-print" />
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowHistory(false)} className="fixed inset-0 bg-transparent z-[100] no-print" />
               <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed right-0 top-0 h-full w-[440px] bg-zinc-950 border-l border-white/10 z-[110] p-8 shadow-2xl flex flex-col no-print">
                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
                     <div>
                       <h2 className="text-sm font-bold text-white uppercase tracking-widest font-sans">Sentinel Archive</h2>
-                      <p className="text-[9px] font-mono text-emerald-500 uppercase tracking-tighter mt-1 font-bold">Searchable DB Indexes</p>
+                      <p className="text-[9px] font-mono text-[#00FF66] uppercase tracking-tighter mt-1 font-bold">Searchable DB Indexes</p>
                     </div>
-                    <button onClick={() => setShowHistory(false)} className="text-zinc-600 hover:text-white transition-colors"><ChevronRight className="w-5 h-5"/></button>
+                    <button onClick={() => setShowHistory(false)} className="text-zinc-400 hover:text-white transition-colors"><ChevronRight className="w-5 h-5"/></button>
                  </div>
 
                  {/* Premium Search and Score Filter Controls */}
@@ -1185,12 +1185,12 @@ export default function App() {
                        placeholder="Search summaries, language, report ID..."
                        value={historyQuery}
                        onChange={(e) => setHistoryQuery(e.target.value)}
-                       className="w-full bg-black border border-white/10 hover:border-white/15 focus:border-emerald-500/50 focus:bg-zinc-950/80 text-[10px] text-zinc-200 placeholder-zinc-500 pl-9 pr-12 py-2 rounded-lg transition-all focus:outline-none font-mono"
+                       className="w-full bg-black border border-white/10 hover:border-white/15 focus:border-[#00FF66]/50 focus:bg-zinc-950/80 text-[10px] text-zinc-200 placeholder-zinc-500 pl-9 pr-12 py-2 rounded-lg transition-all focus:outline-none font-mono"
                      />
                      {historyQuery && (
                        <button 
                          onClick={() => setHistoryQuery('')}
-                         className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-emerald-400 text-[8px] font-mono font-bold uppercase tracking-wider py-0.5 px-1.5 bg-white/5 rounded transition-all"
+                         className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-[#00FF66] text-[8px] font-mono font-bold uppercase tracking-wider py-0.5 px-1.5 bg-white/5 rounded transition-all"
                        >
                          Clear
                        </button>
@@ -1214,7 +1214,7 @@ export default function App() {
                            className={cn(
                              "py-1 rounded text-[8px] font-bold transition-all border font-mono tracking-wider",
                              minScoreFilter === option.value
-                               ? "bg-emerald-500 border-emerald-400 text-zinc-950 font-black shadow-lg shadow-emerald-500/10"
+                               ? "bg-[#00FF66] border-[#00FF66] text-zinc-950 font-black shadow-lg shadow-emerald-500/10"
                                : "bg-black border-white/5 text-zinc-500 hover:text-zinc-350 hover:bg-white/5"
                            )}
                          >
@@ -1243,10 +1243,10 @@ export default function App() {
                         )}
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-[8px] font-mono text-center">
-                        <div className={cn("p-1.5 rounded border transition-all truncate", leftCompareId ? "bg-emerald-950/20 border-emerald-500/20 text-emerald-400" : "bg-zinc-900 border-white/5 text-zinc-650")}>
+                        <div className={cn("p-1.5 rounded border transition-all truncate", leftCompareId ? "bg-emerald-950/20 border-[#00FF66]/20 text-[#00FF66]" : "bg-zinc-900 border-white/5 text-zinc-650")}>
                           L: {leftCompareId ? leftCompareId.slice(0, 10).toUpperCase() : "Undesignated"}
                         </div>
-                        <div className={cn("p-1.5 rounded border transition-all truncate", rightCompareId ? "bg-emerald-950/20 border-emerald-500/20 text-emerald-400" : "bg-zinc-900 border-white/5 text-zinc-650")}>
+                        <div className={cn("p-1.5 rounded border transition-all truncate", rightCompareId ? "bg-emerald-950/20 border-[#00FF66]/20 text-[#00FF66]" : "bg-zinc-900 border-white/5 text-zinc-650")}>
                           R: {rightCompareId ? rightCompareId.slice(0, 10).toUpperCase() : "Undesignated"}
                         </div>
                       </div>
@@ -1267,14 +1267,14 @@ export default function App() {
 
                     {/* Search Counters and reset */}
                    <div className="flex justify-between items-center text-[8px] font-mono text-zinc-500 border-t border-white/5 pt-2">
-                     <span>DB Indexed Records: <strong className="text-emerald-500">{dbHistory.length}</strong></span>
+                     <span>DB Indexed Records: <strong className="text-[#00FF66]">{dbHistory.length}</strong></span>
                      {(historyQuery || minScoreFilter !== 0) && (
                        <button 
                          onClick={() => {
                            setHistoryQuery('');
                            setMinScoreFilter(0);
                          }}
-                         className="text-emerald-500 hover:text-emerald-400 hover:underline cursor-pointer uppercase font-bold tracking-wider"
+                         className="text-[#00FF66] hover:text-[#00FF66] hover:underline cursor-pointer uppercase font-bold tracking-wider"
                        >
                          Reset
                        </button>
@@ -1287,21 +1287,21 @@ export default function App() {
                        <div className="h-48 flex flex-col items-center justify-center text-center p-6 border border-dashed border-white/5 rounded-xl bg-zinc-900/10">
                          <Search className="w-8 h-8 text-zinc-700 mb-3 stroke-[1.5]" />
                          <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1">No Audits Found</h3>
-                         <p className="text-[9px] font-mono text-zinc-600 max-w-[200px]">No logs matched searching criteria or security level.</p>
+                         <p className="text-[9px] font-mono text-zinc-400 max-w-[200px]">No logs matched searching criteria or security level.</p>
                        </div>
                      ) : (
                        dbHistory.map((h, i) => (
                          <div key={h.id || i} className="w-full text-left bg-zinc-900/35 border border-white/5 p-4 rounded-xl transition-all relative overflow-hidden space-y-3">
                            <div className="flex items-center justify-between">
                              <span className="text-[9px] font-mono text-zinc-500">AUDIT_{h.id.slice(0, 10).toUpperCase()}</span>
-                             <span className="text-[8px] text-zinc-600 font-bold font-mono">{h.timestamp ? new Date(h.timestamp).toLocaleDateString() : ""}</span>
+                             <span className="text-[8px] text-zinc-400 font-bold font-mono">{h.timestamp ? new Date(h.timestamp).toLocaleDateString() : ""}</span>
                            </div>
                            
                            <p className="text-[10px] text-zinc-400 leading-relaxed font-mono line-clamp-2">{h.summary}</p>
                            
                            <div className="flex items-center justify-between border-t border-white/5 pt-2.5">
                              <div className="flex items-center gap-1.5">
-                               <span className="px-1.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[8px] font-bold uppercase rounded font-mono">
+                               <span className="px-1.5 py-0.5 bg-[#00FF66]/10 border border-[#00FF66]/20 text-[#00FF66] text-[8px] font-bold uppercase rounded font-mono">
                                  SEC: {h.scores?.security || 0}
                                </span>
                                <span className="px-1.5 py-0.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-bold uppercase rounded font-mono">
@@ -1318,7 +1318,7 @@ export default function App() {
                                <button
                                  type="button"
                                  onClick={() => handleLoadReport(h.id)}
-                                 className="px-2 py-1 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold rounded text-[8px] uppercase tracking-wide cursor-pointer transition-all"
+                                 className="px-2 py-1 bg-[#00FF66] hover:bg-[#00FF66] text-zinc-950 font-bold rounded text-[8px] uppercase tracking-wide cursor-pointer transition-all"
                                >
                                  Load
                                </button>
@@ -1371,12 +1371,12 @@ export default function App() {
             <div className="glass p-4 rounded-xl border-white/5 space-y-3 bg-zinc-950/20">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <GitBranch className="w-3 h-3 text-emerald-500" />
+                  <GitBranch className="w-3 h-3 text-[#00FF66]" />
                   <span className="text-[9px] font-bold text-white uppercase tracking-[0.2em]">Repository Context</span>
                 </div>
                 {githubRepo && (
-                  <div className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                    <span className="text-[8px] text-emerald-500 font-bold tracking-widest uppercase">AUTO_SYNC</span>
+                  <div className="px-2 py-0.5 rounded bg-[#00FF66]/10 border border-[#00FF66]/20">
+                    <span className="text-[8px] text-[#00FF66] font-bold tracking-widest uppercase">AUTO_SYNC</span>
                   </div>
                 )}
               </div>
@@ -1386,14 +1386,14 @@ export default function App() {
                   placeholder="ORG/REPO_NAME" 
                   value={githubRepo}
                   onChange={(e) => setGithubRepo(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-zinc-400 font-mono outline-none focus:border-emerald-500/50 transition-all"
+                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-zinc-400 font-mono outline-none focus:border-[#00FF66]/50 transition-all"
                 />
                 <input 
                   type="text" 
                   placeholder="BRANCH (MAIN)" 
                   value={githubBranch}
                   onChange={(e) => setGithubBranch(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-zinc-400 font-mono outline-none focus:border-emerald-500/50 transition-all"
+                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-zinc-400 font-mono outline-none focus:border-[#00FF66]/50 transition-all"
                 />
               </div>
             </div>
@@ -1401,10 +1401,10 @@ export default function App() {
             <div className="glass rounded-2xl overflow-hidden flex flex-col min-h-[600px] lg:h-[700px] bg-[#0b0b0b] relative border border-white/5 shadow-2xl">
               <div className="h-10 bg-zinc-900/50 border-b border-white/5 flex items-center justify-between px-4 shrink-0">
                 <div className="flex items-center gap-3">
-                  <Terminal className="w-3 h-3 text-emerald-500" />
+                  <Terminal className="w-3 h-3 text-[#00FF66]" />
                   <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Logic Extraction.audit</span>
                   {isSampleMode && (
-                    <span className="px-1.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[8px] font-black tracking-widest rounded uppercase">
+                    <span className="px-1.5 py-0.5 bg-[#00FF66]/10 border border-[#00FF66]/20 text-[#00FF66] text-[8px] font-black tracking-widest rounded uppercase">
                       Stock Sample
                     </span>
                   )}
@@ -1422,10 +1422,10 @@ export default function App() {
                   )}
                   {code.trim() && (
                     <div className="flex items-center gap-1.5 pr-2 border-r border-white/5 mr-1">
-                      <div id="copy-indicator" className="text-[8px] text-emerald-500 font-bold uppercase tracking-tighter opacity-0 transition-opacity">Copied!</div>
+                      <div id="copy-indicator" className="text-[8px] text-[#00FF66] font-bold uppercase tracking-tighter opacity-0 transition-opacity">Copied!</div>
                       <button 
                         onClick={handleCopyCode}
-                        className="p-1.5 text-zinc-500 hover:text-emerald-500 transition-colors"
+                        className="p-1.5 text-zinc-500 hover:text-[#00FF66] transition-colors"
                         title="Copy Code"
                       >
                         <Copy className="w-3.5 h-3.5" />
@@ -1433,13 +1433,13 @@ export default function App() {
                       <button 
                         onClick={handlePrintPDF}
                         disabled={isGeneratingPdf}
-                        className="p-1.5 text-zinc-500 hover:text-emerald-500 transition-colors disabled:opacity-40"
+                        className="p-1.5 text-zinc-500 hover:text-[#00FF66] transition-colors disabled:opacity-40"
                         title={pdfReady ? "Instant PDF Download (Precompiled)" : "Download Certified Auditor PDF"}
                       >
                         {isGeneratingPdf ? (
-                          <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-500" />
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00FF66]" />
                         ) : (
-                          <FileText className={`w-3.5 h-3.5 ${pdfReady ? 'text-emerald-400 animate-pulse' : 'text-emerald-500'}`} />
+                          <FileText className={`w-3.5 h-3.5 ${pdfReady ? 'text-[#00FF66] animate-pulse' : 'text-[#00FF66]'}`} />
                         )}
                       </button>
                     </div>
@@ -1462,7 +1462,7 @@ export default function App() {
                   ) : (
                     <button 
                       onClick={handleViewSample}
-                      className="text-[9px] text-emerald-500/60 hover:text-emerald-500 uppercase font-bold tracking-widest transition-colors flex items-center gap-1.5 px-2 py-1 rounded bg-emerald-500/5 border border-emerald-500/10 shrink-0"
+                      className="text-[9px] text-[#00FF66]/60 hover:text-[#00FF66] uppercase font-bold tracking-widest transition-colors flex items-center gap-1.5 px-2 py-1 rounded bg-[#00FF66]/5 border border-[#00FF66]/10 shrink-0"
                       title="Load Sample Report"
                     >
                       <Eye className="w-2.5 h-2.5" />
@@ -1478,7 +1478,7 @@ export default function App() {
                     }}
                     className={cn(
                       "flex items-center gap-1.5 px-2 py-1 rounded transition-all shrink-0",
-                      showShield ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" : "text-zinc-600 grayscale"
+                      showShield ? "bg-[#00FF66]/10 text-[#00FF66] border border-[#00FF66]/20" : "text-zinc-400 grayscale"
                     )}
                   >
                     <Zap className="w-2.5 h-2.5" />
@@ -1512,7 +1512,7 @@ export default function App() {
               <div className="flex-1 relative overflow-hidden group">
                 <textarea
                   className={cn(
-                    "absolute inset-0 w-full h-full bg-transparent p-4 md:p-8 font-mono text-xs md:text-sm text-zinc-100 outline-none leading-[1.6] selection:bg-emerald-500/20 placeholder:text-zinc-800 transition-all overflow-auto custom-scrollbar z-10",
+                    "absolute inset-0 w-full h-full bg-transparent p-4 md:p-8 font-mono text-xs md:text-sm text-zinc-100 outline-none leading-[1.6] selection:bg-[#00FF66]/20 placeholder:text-zinc-800 transition-all overflow-auto custom-scrollbar z-10",
                     showShield && "decoration-emerald-500/30 decoration-wavy underline underline-offset-4"
                   )}
                   placeholder="# Enter source code for Principal-level auditing..."
@@ -1532,7 +1532,7 @@ export default function App() {
                     "w-full py-4 rounded-xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all flex items-center justify-center gap-3",
                     (isAnalyzing || isSampleMode) 
                       ? "bg-white/5 text-white/20 border border-white/5 cursor-not-allowed" 
-                      : "bg-emerald-500 hover:bg-emerald-400 text-zinc-950 shadow-xl shadow-emerald-500/20"
+                      : "bg-[#00FF66] hover:bg-[#00FF66] text-zinc-950 shadow-xl shadow-emerald-500/20"
                   )}
                 >
                   {isAnalyzing ? (
@@ -1562,14 +1562,14 @@ export default function App() {
                 >
                   <div className="flex items-center justify-between px-2">
                     <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-emerald-500" />
+                      <Sparkles className="w-4 h-4 text-[#00FF66]" />
                       <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Principal Fixed Output</h3>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div id="fixed-copy-indicator" className="text-[8px] text-emerald-500 font-bold uppercase tracking-tighter opacity-0 transition-opacity">Copied!</div>
+                      <div id="fixed-copy-indicator" className="text-[8px] text-[#00FF66] font-bold uppercase tracking-tighter opacity-0 transition-opacity">Copied!</div>
                       <button 
                         onClick={handleCopyFixedCode}
-                        className="p-2 bg-white/5 border border-white/10 rounded-lg text-zinc-400 hover:text-emerald-500 transition-all"
+                        className="p-2 bg-white/5 border border-white/10 rounded-lg text-zinc-400 hover:text-[#00FF66] transition-all"
                         title="Copy Fixed Code"
                       >
                         <Copy className="w-3.5 h-3.5" />
@@ -1591,9 +1591,9 @@ export default function App() {
                       )}
                     </div>
                   </div>
-                  <div className="glass rounded-2xl overflow-hidden flex flex-col min-h-[600px] lg:h-[700px] bg-[#0b0b0b] border border-emerald-500/20 shadow-2xl shadow-emerald-500/10 relative">
+                  <div className="glass rounded-2xl overflow-hidden flex flex-col min-h-[600px] lg:h-[700px] bg-[#0b0b0b] border border-[#00FF66]/20 shadow-2xl shadow-emerald-500/10 relative">
                     {isSampleMode && (
-                      <div className="bg-emerald-500/5 px-6 py-2 border-b border-emerald-500/10 flex items-center justify-between text-[8px] tracking-wider text-emerald-400 font-mono font-bold uppercase relative z-20">
+                      <div className="bg-[#00FF66]/5 px-6 py-2 border-b border-[#00FF66]/10 flex items-center justify-between text-[8px] tracking-wider text-[#00FF66] font-mono font-bold uppercase relative z-20">
                         <span className="flex items-center gap-1.5">
                           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
                           Interactive Fixed Showcase (Read-Only Output)
@@ -1603,7 +1603,7 @@ export default function App() {
                     )}
                     <textarea
                       className={cn(
-                        "absolute inset-0 w-full h-full bg-transparent p-6 md:p-10 font-mono text-xs md:text-sm text-emerald-500/90 outline-none leading-[1.6] selection:bg-emerald-500/20 placeholder:text-zinc-800 transition-all overflow-auto custom-scrollbar resize-none z-10"
+                        "absolute inset-0 w-full h-full bg-transparent p-6 md:p-10 font-mono text-xs md:text-sm text-[#00FF66]/90 outline-none leading-[1.6] selection:bg-[#00FF66]/20 placeholder:text-zinc-800 transition-all overflow-auto custom-scrollbar resize-none z-10"
                       )}
                       value={fixedCode}
                       onChange={(e) => {
@@ -1633,10 +1633,10 @@ export default function App() {
           <div className="lg:col-span-7 space-y-8">
             {!review && !isAnalyzing ? (
               <div className="h-[700px] flex flex-col items-center justify-center text-center glass rounded-2xl border-white/5 relative overflow-hidden">
-                <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] rounded-full translate-y-1/2" />
+                <div className="absolute inset-0 bg-[#00FF66]/5 blur-[120px] rounded-full translate-y-1/2" />
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mb-6 border border-emerald-500/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
-                    <Rocket className="w-8 h-8 text-emerald-500" />
+                  <div className="w-20 h-20 bg-[#00FF66]/10 rounded-full flex items-center justify-center mb-6 border border-[#00FF66]/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
+                    <Rocket className="w-8 h-8 text-[#00FF66]" />
                   </div>
                   <h3 className="text-xs uppercase tracking-[0.6em] font-black text-white mb-3">Ready for Review</h3>
                   <p className="text-[10px] text-zinc-500 max-w-[320px] uppercase tracking-widest font-mono leading-relaxed mb-10">
@@ -1649,7 +1649,7 @@ export default function App() {
                         const textarea = document.querySelector('textarea');
                         if (textarea) textarea.focus();
                       }}
-                      className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-all text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-emerald-500/20"
+                      className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-[#00FF66] text-zinc-950 hover:bg-[#00FF66] transition-all text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-emerald-500/20"
                     >
                       <Terminal className="w-4 h-4" />
                       Begin Session
@@ -1668,22 +1668,22 @@ export default function App() {
                 </div>
               </div>
             ) : isAnalyzing ? (
-              <div className="h-[700px] flex flex-col items-center justify-center p-12 text-center glass rounded-2xl border-emerald-500/10">
+              <div className="h-[700px] flex flex-col items-center justify-center p-12 text-center glass rounded-2xl border-[#00FF66]/10">
                  <div className="relative mb-8">
-                   <div className="w-20 h-20 border-4 border-emerald-500/10 rounded-full animate-ping" />
+                   <div className="w-20 h-20 border-4 border-[#00FF66]/10 rounded-full animate-ping" />
                    <div className="absolute inset-0 flex items-center justify-center">
                      <div className="w-12 h-12 border-2 border-t-emerald-500 border-transparent rounded-full animate-spin" />
                    </div>
                  </div>
                  <div className="space-y-4">
-                  <p className="font-mono text-[10px] tracking-[0.4em] text-emerald-500 uppercase font-bold">Auditing Infrastructure</p>
+                  <p className="font-mono text-[10px] tracking-[0.4em] text-[#00FF66] uppercase font-bold">Auditing Infrastructure</p>
                   <p className="text-zinc-500 text-xs italic font-mono h-4">{statusText}</p>
                 </div>
               </div>
             ) : (
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <div className="flex items-center justify-between no-print">
-                    <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-emerald-500">Report Ready</h2>
+                    <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#00FF66]">Report Ready</h2>
                     <button 
                       onClick={() => {
                         setReview(null);
@@ -1705,7 +1705,7 @@ export default function App() {
                   {isSampleMode && (
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/5 no-print">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
+                        <Sparkles className="w-4 h-4 text-[#00FF66] animate-pulse" />
                         <div>
                           <p className="text-[10px] font-extrabold uppercase tracking-wider text-white">Interactive Sandbox Showroom</p>
                           <p className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Enterprise evaluation analytics</p>
@@ -1717,7 +1717,7 @@ export default function App() {
                           className={cn(
                             "px-3 py-1.5 text-[9px] font-black font-mono uppercase tracking-widest rounded-lg transition-all flex items-center gap-1.5 cursor-pointer",
                             activeSampleReportView === 'report'
-                              ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-md"
+                              ? "bg-[#00FF66]/10 text-[#00FF66] border border-[#00FF66]/20 shadow-md"
                               : "text-zinc-500 hover:text-zinc-300"
                           )}
                         >
@@ -1755,7 +1755,7 @@ export default function App() {
                   {(activeSampleReportView === 'report' || !isSampleMode) && (
                     <>
                       {/* Compliance Shield Gauge */}
-                  <div className="glass p-6 rounded-2xl flex flex-col sm:flex-row items-center gap-6 border-emerald-500/10">
+                  <div className="glass p-6 rounded-2xl flex flex-col sm:flex-row items-center gap-6 border-[#00FF66]/10">
                     <Gauge score={review.scores.security} />
                     <div className="flex-1 text-center sm:text-left space-y-3">
                       <div>
@@ -1774,7 +1774,7 @@ export default function App() {
                                 }, 100);
                               }
                             }}
-                            className="w-full py-2.5 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 cursor-pointer active:scale-[0.98]"
+                            className="w-full py-2.5 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 bg-[#00FF66] hover:bg-[#00FF66] text-zinc-950 cursor-pointer active:scale-[0.98]"
                           >
                             <Sparkles className="w-3.5 h-3.5 shrink-0 animate-pulse text-zinc-950" />
                             <span className="truncate">Fix All Issues</span>
@@ -1791,7 +1791,7 @@ export default function App() {
                         <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-mono">Assurance Confidence</span>
                         <span className={cn(
                           "px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider",
-                          review.confidenceLevel === 'high' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.1)]' :
+                          review.confidenceLevel === 'high' ? 'bg-[#00FF66]/10 text-[#00FF66] border border-[#00FF66]/20 shadow-[0_0_8px_rgba(16,185,129,0.1)]' :
                           review.confidenceLevel === 'medium' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20 shadow-[0_0_8px_rgba(245,158,11,0.1)]' :
                           'bg-zinc-500/10 text-zinc-500 border border-zinc-500/20'
                         )}>
@@ -1825,7 +1825,7 @@ export default function App() {
                   {/* Explainable Deterministic Scores & Deductions Dashboard */}
                   <div className="space-y-4 mt-6 animate-in fade-in duration-500">
                     <div className="flex items-center gap-2 pl-1">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <ShieldCheck className="w-4 h-4 text-[#00FF66]" />
                       <h2 className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-extrabold">Deterministic Audit Scores & Deductions</h2>
                     </div>
 
@@ -1837,7 +1837,7 @@ export default function App() {
                             <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest font-mono">Performance Safety</span>
                             <span className={cn(
                               "text-sm font-mono font-black",
-                              review.scores.performance >= 8 ? 'text-emerald-400' :
+                              review.scores.performance >= 8 ? 'text-[#00FF66]' :
                               review.scores.performance >= 5 ? 'text-amber-400' : 'text-red-400'
                             )}>{review.scores.performance}/10</span>
                           </div>
@@ -1862,7 +1862,7 @@ export default function App() {
                             <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest font-mono">Security Safeguards</span>
                             <span className={cn(
                               "text-sm font-mono font-black",
-                              review.scores.security >= 8 ? 'text-emerald-400' :
+                              review.scores.security >= 8 ? 'text-[#00FF66]' :
                               review.scores.security >= 5 ? 'text-amber-400' : 'text-red-400'
                             )}>{review.scores.security}/10</span>
                           </div>
@@ -1887,7 +1887,7 @@ export default function App() {
                             <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest font-mono">Code Readability</span>
                             <span className={cn(
                               "text-sm font-mono font-black",
-                              review.scores.readability >= 8 ? 'text-emerald-400' :
+                              review.scores.readability >= 8 ? 'text-[#00FF66]' :
                               review.scores.readability >= 5 ? 'text-amber-400' : 'text-red-400'
                             )}>{review.scores.readability}/10</span>
                           </div>
@@ -1912,7 +1912,7 @@ export default function App() {
                             <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest font-mono">Maintainability Index</span>
                             <span className={cn(
                               "text-sm font-mono font-black",
-                              review.scores.maintainability >= 8 ? 'text-emerald-400' :
+                              review.scores.maintainability >= 8 ? 'text-[#00FF66]' :
                               review.scores.maintainability >= 5 ? 'text-amber-400' : 'text-red-400'
                             )}>{review.scores.maintainability}/10</span>
                           </div>
@@ -1960,11 +1960,11 @@ export default function App() {
                        ))}
                     </div>
 
-                    <div className="glass p-4 rounded-xl border-emerald-500/10 bg-emerald-500/[0.02] flex items-start gap-4">
-                       <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <div className="glass p-4 rounded-xl border-[#00FF66]/10 bg-[#00FF66]/[0.02] flex items-start gap-4">
+                       <CheckCircle2 className="w-4 h-4 text-[#00FF66] shrink-0" />
                        <div>
-                          <p className="text-[9px] text-emerald-500/80 font-bold uppercase tracking-widest mb-1">Authenticated Secure</p>
-                          <p className="text-[9px] text-zinc-600 font-mono italic">Engine verified concurrency safety & resource isolation.</p>
+                          <p className="text-[9px] text-[#00FF66]/80 font-bold uppercase tracking-widest mb-1">Authenticated Secure</p>
+                          <p className="text-[9px] text-zinc-400 font-mono italic">Engine verified concurrency safety & resource isolation.</p>
                        </div>
                     </div>
                   </div>
@@ -2082,24 +2082,24 @@ export default function App() {
                         "text-xl font-mono font-black",
                         review.metrics.complexityScore === 'critical' ? 'text-red-500' :
                         review.metrics.complexityScore === 'high' ? 'text-orange-500' :
-                        review.metrics.complexityScore === 'medium' ? 'text-yellow-500' : 'text-emerald-500'
+                        review.metrics.complexityScore === 'medium' ? 'text-yellow-500' : 'text-[#00FF66]'
                       )}>{review.metrics.cyclomaticComplexity}</span>
-                      <span className="text-[7px] text-zinc-600 font-mono uppercase">{review.metrics.complexityScore}_entropy</span>
+                      <span className="text-[7px] text-zinc-400 font-mono uppercase">{review.metrics.complexityScore}_entropy</span>
                     </div>
                     <div className="glass p-4 rounded-xl flex flex-col items-center justify-center text-center space-y-1">
                       <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-widest">Lines of Code</span>
                       <span className="text-xl font-mono font-black text-white">{review.metrics.linesOfCode}</span>
-                      <span className="text-[7px] text-zinc-600 font-mono uppercase">total_loc</span>
+                      <span className="text-[7px] text-zinc-400 font-mono uppercase">total_loc</span>
                     </div>
                     <div className="glass p-4 rounded-xl flex flex-col items-center justify-center text-center space-y-1">
                       <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-widest">Function Count</span>
                       <span className="text-xl font-mono font-black text-white">{review.metrics.functionCount}</span>
-                      <span className="text-[7px] text-zinc-600 font-mono uppercase">symbol_definitions</span>
+                      <span className="text-[7px] text-zinc-400 font-mono uppercase">symbol_definitions</span>
                     </div>
                     <div className="glass p-4 rounded-xl flex flex-col items-center justify-center text-center space-y-1">
                       <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-widest">Maintainability</span>
                       <span className="text-xl font-mono font-black text-white">{review.scores.maintainability * 10}%</span>
-                      <span className="text-[7px] text-zinc-600 font-mono uppercase">index_health</span>
+                      <span className="text-[7px] text-zinc-400 font-mono uppercase">index_health</span>
                     </div>
                   </div>
                 </section>
@@ -2150,7 +2150,7 @@ export default function App() {
                                         document.getElementById('fixed-copy-indicator')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                       }, 100);
                                     }}
-                                    className="px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20 bg-emerald-500 text-zinc-950 hover:bg-emerald-400 cursor-pointer active:scale-[0.98]"
+                                    className="px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20 bg-[#00FF66] text-zinc-950 hover:bg-[#00FF66] cursor-pointer active:scale-[0.98]"
                                   >
                                     <Wrench className="w-3 h-3 text-zinc-950" />
                                     Fix For Me
@@ -2416,7 +2416,7 @@ export default function App() {
                       onClick={handleDownloadMarkdown}
                       className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-[10px] sm:text-[11px] text-zinc-300 hover:bg-white/10 hover:border-white/20 transition-all uppercase font-bold tracking-widest sm:tracking-[0.12em] shadow-lg shadow-white/5 whitespace-nowrap cursor-pointer"
                     >
-                      <FileText className="w-4 h-4 text-emerald-500 group-hover:scale-110 transition-transform" />
+                      <FileText className="w-4 h-4 text-[#00FF66] group-hover:scale-110 transition-transform" />
                       <span>Markdown Report</span>
                     </button>
                     <button 
@@ -2453,7 +2453,7 @@ export default function App() {
                     { name: "renderUI", complexity: 3, description: "Presents status variables and layout metrics to standard browser viewports." },
                   ].map((fn, i) => {
                     const getHeatColor = (val: number) => {
-                      if (val <= 3) return "border-emerald-500/20 bg-emerald-500/5 text-emerald-400 hover:border-emerald-500/40";
+                      if (val <= 3) return "border-[#00FF66]/20 bg-[#00FF66]/5 text-[#00FF66] hover:border-[#00FF66]/40";
                       if (val <= 7) return "border-amber-500/20 bg-amber-500/5 text-amber-400 hover:border-amber-500/40";
                       return "border-rose-500/20 bg-rose-500/5 text-rose-400 hover:border-rose-500/40";
                     };
@@ -2493,7 +2493,7 @@ export default function App() {
                           <div 
                             className={cn(
                               "h-full rounded-full transition-all duration-1000",
-                              fn.complexity <= 3 ? "bg-emerald-500" : fn.complexity <= 7 ? "bg-amber-500" : "bg-rose-500"
+                              fn.complexity <= 3 ? "bg-[#00FF66]" : fn.complexity <= 7 ? "bg-amber-500" : "bg-rose-500"
                             )}
                             style={{ width: `${Math.min(100, (fn.complexity / 10) * 100)}%` }}
                           />
@@ -2537,14 +2537,14 @@ export default function App() {
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest block font-mono">Mitigation Solutions</span>
+                        <span className="text-[9px] font-bold text-[#00FF66] uppercase tracking-widest block font-mono">Mitigation Solutions</span>
                         <ul className="space-y-2">
                           <li className="flex gap-2 text-[10px] text-zinc-500 font-mono">
-                            <span className="text-emerald-500 font-bold shrink-0">▲</span>
+                            <span className="text-[#00FF66] font-bold shrink-0">▲</span>
                             <span>Async timers let other operations execute safely.</span>
                           </li>
                           <li className="flex gap-2 text-[10px] text-zinc-500 font-mono">
-                            <span className="text-emerald-500 font-bold shrink-0">▲</span>
+                            <span className="text-[#00FF66] font-bold shrink-0">▲</span>
                             <span>Fixed array sizes evict oldest data.</span>
                           </li>
                         </ul>

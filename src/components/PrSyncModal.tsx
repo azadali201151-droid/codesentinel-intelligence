@@ -122,7 +122,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-black/90 backdrop-blur-md"
+        className="absolute inset-0 bg-transparent"
       />
       
       <motion.div 
@@ -134,7 +134,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
         {/* Left Hand Setup State Panel */}
         <div className="w-full md:w-[350px] bg-[#0c0c0c] border-b md:border-b-0 md:border-r border-white/5 flex flex-col p-6 overflow-y-auto">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#00FF66]/10 border border-[#00FF66]/20 flex items-center justify-center shrink-0">
               <Sparkles className="w-4 h-4 text-emerald-500" />
             </div>
             <div>
@@ -168,12 +168,12 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                 <div key={index} className="flex items-start gap-3 relative">
                   {/* Visual Connection line between checkpoints */}
                   {index < steps.length - 1 && (
-                    <div className={`absolute top-5 left-2.5 w-[1px] h-8 -z-10 ${isDone ? 'bg-emerald-500/30' : 'bg-white/5'}`} />
+                    <div className={`absolute top-5 left-2.5 w-[1px] h-8 -z-10 ${isDone ? 'bg-[#00FF66]/30' : 'bg-white/5'}`} />
                   )}
                   
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 border ${
-                    isDone ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-500' :
-                    isActive ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 animate-pulse' :
+                    isDone ? 'bg-[#00FF66]/10 border-[#00FF66]/30 text-emerald-500' :
+                    isActive ? 'bg-[#00FF66]/20 border-[#00FF66] text-[#00FF66] animate-pulse' :
                     'bg-white/5 border-white/10 text-zinc-600'
                   }`}>
                     {isDone ? (
@@ -188,7 +188,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                   <div>
                     <h4 className={`text-[10px] font-bold uppercase tracking-wider ${
                       isDone ? 'text-zinc-300' :
-                      isActive ? 'text-emerald-400' :
+                      isActive ? 'text-[#00FF66]' :
                       'text-zinc-600'
                     }`}>{s}</h4>
                     <p className="text-[8px] text-zinc-500 mt-0.5 font-mono">
@@ -212,7 +212,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
         <div className="flex-1 flex flex-col overflow-hidden bg-black">
           {step < 5 ? (
             /* Live Terminal Logging View */
-            <div className="flex-1 flex flex-col h-full font-mono selection:bg-emerald-500/20">
+            <div className="flex-1 flex flex-col h-full font-mono selection:bg-[#00FF66]/20">
               <div className="h-9 px-4 bg-zinc-950/60 border-b border-white/5 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-zinc-500" />
@@ -269,7 +269,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                   <div className={`px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider flex items-center gap-1.5 border ${
                     isMerged 
                       ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' 
-                      : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                      : 'bg-[#00FF66]/10 border-[#00FF66]/20 text-[#00FF66]'
                   }`}>
                     {isMerged ? <GitMerge className="w-3.5 h-3.5" /> : <GitPullRequest className="w-3.5 h-3.5" />}
                     <span>{isMerged ? 'Merged' : 'Open'}</span>
@@ -290,7 +290,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                     <span className="text-[8px] font-mono tracking-widest uppercase text-white/25">Verified Bot</span>
                   </div>
                   <div className="p-4 space-y-4">
-                    <div className="border border-emerald-500/10 bg-emerald-500/5 p-4 rounded-lg flex items-start gap-3">
+                    <div className="border border-[#00FF66]/10 bg-[#00FF66]/5 p-4 rounded-lg flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                       <div>
                         <h4 className="text-[11px] font-black uppercase text-emerald-500 tracking-wider">Automated Patch Verified</h4>
@@ -337,7 +337,7 @@ export const PrSyncModal: React.FC<PrSyncModalProps> = ({
                     <button 
                       onClick={handleMergePr}
                       disabled={isMerging}
-                      className="px-4 py-2 bg-emerald-500 text-zinc-950 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-emerald-400 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20 shrink-0"
+                      className="px-4 py-2 bg-[#00FF66] text-zinc-950 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-[#00FF66] transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20 shrink-0"
                     >
                       {isMerging ? (
                         <>
