@@ -52,7 +52,7 @@ import {
 } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { cn, generateMarkdown, downloadFile, formatCode, warmupPrettier } from './lib/utils';
+import { cn, generateMarkdown, downloadFile, formatCode, warmupPrettier, replaceOklch } from './lib/utils';
 import { analyzeCode, analyzeCodeQueue, switchAuthPersona, getRateLimitStats, getHistoryArchive, getHistoryReportDetails, getCompareReports, EngineeringReview, getSavedAuthToken } from './services/geminiService';
 import { auth, signInWithGoogle, setGuestUser } from './lib/firebase';
 import { onAuthStateChanged, User, signOut } from 'firebase/auth';
@@ -66,6 +66,9 @@ import { Mermaid } from './components/Mermaid';
 import { FormattedHighlighter } from './components/FormattedHighlighter';
 import { AdminDashboard } from './components/AdminDashboard';
 import { PrSyncModal } from './components/PrSyncModal';
+import { ReportPDFTemplate } from './components/ReportPDFTemplate';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import { SAMPLE_CODE, SAMPLE_REVIEW } from './constants/samples';
 import { FAQ_SCHEMA } from './constants/faqs';
 
@@ -123,6 +126,14 @@ export default function App() {
   const [rightCompareId, setRightCompareId] = useState<string>('');
   const [compareResult, setCompareResult] = useState<any | null>(null);
   const [isComparing, setIsComparing] = useState(false);
+
+  // PDF REPORT STATE
+  const [showPdfModal, setShowPdfModal] = useState(false);
+  const [completeNameInput, setCompleteNameInput] = useState('');
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const compiledPdfRef = useRef<any>(null);
+  const isPdfCompilingRef = useRef<boolean>(false);
+  const [pdfReady, setPdfReady] = useState(false);
 
   // Quick helper to fetch Rate Limit stats
   const fetchRateLimitStats = async () => {
@@ -545,8 +556,251 @@ export default function App() {
     downloadFile(md, 'engineering-review.md', 'text/markdown');
   };
 
-  const handlePrintPDF = () => {
-    window.print();
+  // Background PDF Compiled generator for instantaneous zero-latency downloads
+  useEffect(() => {
+    if (!review) {
+      compiledPdfRef.current = null;
+      setPdfReady(false);
+      return;
+    }
+
+    let isMounted = true;
+    const auditorName = user?.displayName || user?.email || "Azad Ali";
+    if (completeNameInput !== auditorName) {
+      setCompleteNameInput(auditorName);
+    }
+
+    const compileBackground = async () => {
+      // 1. Initial delay so reactant node mounts state transitions fully
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      if (!isMounted || !review) return;
+
+      // 2. Poll for DOM element availability to confirm it exists
+      let element = document.getElementById('nexis-pdf-export-root');
+      let retries = 0;
+      while (!element && retries < 15 && isMounted) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        element = document.getElementById('nexis-pdf-export-root');
+        retries++;
+      }
+
+      if (!element || !isMounted || !review) return;
+      if (isPdfCompilingRef.current) return;
+
+      isPdfCompilingRef.current = true;
+      const disabledLinks: { link: HTMLLinkElement; prevRel: string }[] = [];
+      const createdStyles: HTMLStyleElement[] = [];
+
+      try {
+        // Inline oklch & oklab styles from same-origin stylesheets to prevent parser issue
+        const links = Array.from(document.querySelectorAll('link[rel="stylesheet"]')) as HTMLLinkElement[];
+        for (const link of links) {
+          const href = link.href;
+          if (href && (href.startsWith(window.location.origin) || href.startsWith('/'))) {
+            try {
+              const res = await fetch(href);
+              if (res.ok) {
+                const cssText = await res.text();
+                const safeText = replaceOklch(cssText);
+                
+                const styleEl = document.createElement('style');
+                styleEl.className = 'nexis-temp-inlined-style';
+                styleEl.textContent = safeText;
+                document.head.appendChild(styleEl);
+                createdStyles.push(styleEl);
+                
+                disabledLinks.push({ link, prevRel: link.rel });
+                link.rel = 'alternate';
+              }
+            } catch (err) {
+              console.warn("Could not inline styles for bg compile:", err);
+            }
+          }
+        }
+
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#09090b',
+          logging: false,
+          onclone: (clonedDoc) => {
+            const styles = Array.from(clonedDoc.getElementsByTagName('style'));
+            styles.forEach((style) => {
+              if (style.textContent && (style.textContent.includes('oklch') || style.textContent.includes('oklab'))) {
+                style.textContent = replaceOklch(style.textContent);
+              }
+            });
+            const allElements = Array.from(clonedDoc.getElementsByTagName('*'));
+            allElements.forEach((elem) => {
+              const htmlElem = elem as HTMLElement;
+              if (htmlElem && typeof htmlElem.getAttribute === 'function') {
+                const styleAttr = htmlElem.getAttribute('style');
+                if (styleAttr && (styleAttr.includes('oklch') || styleAttr.includes('oklab'))) {
+                  htmlElem.setAttribute('style', replaceOklch(styleAttr));
+                }
+              }
+            });
+          }
+        });
+
+        if (!isMounted) return;
+
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = canvas.width / 2;
+        const imgHeight = canvas.height / 2;
+
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'px',
+          format: [imgWidth, imgHeight]
+        });
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+        compiledPdfRef.current = pdf;
+        setPdfReady(true);
+      } catch (err) {
+        console.warn("Background PDF compilation warning:", err);
+      } finally {
+        disabledLinks.forEach(({ link, prevRel }) => {
+          link.rel = prevRel;
+        });
+        createdStyles.forEach((style) => {
+          if (style.parentNode) {
+            style.parentNode.removeChild(style);
+          }
+        });
+        isPdfCompilingRef.current = false;
+      }
+    };
+
+    compileBackground();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [review, user]);
+
+  const handlePrintPDF = async () => {
+    if (!review) return;
+
+    // Zero-lag immediate download from precompiled reference
+    if (compiledPdfRef.current) {
+      const fileDate = new Date().toISOString().split('T')[0];
+      compiledPdfRef.current.save(`Nexis-Audit-Report-${fileDate}.pdf`);
+      return;
+    }
+
+    // Fallback: Compile on the fly if user clicks before background thread completes
+    setIsGeneratingPdf(true);
+    
+    // Set official Auditor / Operator Name
+    const auditorName = user?.displayName || user?.email || "Azad Ali";
+    setCompleteNameInput(auditorName);
+    
+    // Give state transitions a moment to safely render the offscreen DOM hierarchy
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    
+    const element = document.getElementById('nexis-pdf-export-root');
+    if (!element) {
+      setIsGeneratingPdf(false);
+      setError("High-fidelity PDF renderer template was not found.");
+      return;
+    }
+    
+    const disabledLinks: { link: HTMLLinkElement; prevRel: string }[] = [];
+    const createdStyles: HTMLStyleElement[] = [];
+
+    try {
+      // 1. Process external stylesheets to prevent html2canvas parsing errors on oklch/oklab
+      const links = Array.from(document.querySelectorAll('link[rel="stylesheet"]')) as HTMLLinkElement[];
+      for (const link of links) {
+        const href = link.href;
+        // Only process same-origin links
+        if (href && (href.startsWith(window.location.origin) || href.startsWith('/'))) {
+          try {
+            const res = await fetch(href);
+            if (res.ok) {
+              const cssText = await res.text();
+              const safeText = replaceOklch(cssText);
+              
+              const styleEl = document.createElement('style');
+              styleEl.className = 'nexis-temp-inlined-style';
+              styleEl.textContent = safeText;
+              document.head.appendChild(styleEl);
+              createdStyles.push(styleEl);
+              
+              disabledLinks.push({ link, prevRel: link.rel });
+              link.rel = 'alternate'; // Disable original stylesheet parser triggers
+            }
+          } catch (fetchErr) {
+            console.warn("Could not inline stylesheet for pdf rendering:", href, fetchErr);
+          }
+        }
+      }
+
+      // 2. Generate Canvas with cloned document sanitation
+      const canvas = await html2canvas(element, {
+        scale: 2, // Excellent DPI for zoom capabilities without pixelation
+        useCORS: true,
+        backgroundColor: '#09090b',
+        logging: false,
+        onclone: (clonedDoc) => {
+          // Process all <style> elements inside the cloned iframe
+          const styles = Array.from(clonedDoc.getElementsByTagName('style'));
+          styles.forEach((style) => {
+            if (style.textContent && (style.textContent.includes('oklch') || style.textContent.includes('oklab'))) {
+              style.textContent = replaceOklch(style.textContent);
+            }
+          });
+          
+          // Process all inline styles of DOM elements in the cloned iframe
+          const allElements = Array.from(clonedDoc.getElementsByTagName('*'));
+          allElements.forEach((elem) => {
+            const htmlElem = elem as HTMLElement;
+            if (htmlElem && typeof htmlElem.getAttribute === 'function') {
+              const styleAttr = htmlElem.getAttribute('style');
+              if (styleAttr && (styleAttr.includes('oklch') || styleAttr.includes('oklab'))) {
+                htmlElem.setAttribute('style', replaceOklch(styleAttr));
+              }
+            }
+          });
+        }
+      });
+      
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = canvas.width / 2;
+      const imgHeight = canvas.height / 2;
+      
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [imgWidth, imgHeight]
+      });
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      
+      // Cache this compiled version for immediate future clicks
+      compiledPdfRef.current = pdf;
+      setPdfReady(true);
+
+      const fileDate = new Date().toISOString().split('T')[0];
+      pdf.save(`Nexis-Audit-Report-${fileDate}.pdf`);
+    } catch (err: any) {
+      console.error("Renderer capture failed:", err);
+      setError("Automatic PDF compile halted. Accessing standard system print queue instead.");
+      window.print();
+    } finally {
+      // Restore links and clean up created helper stylesheets
+      disabledLinks.forEach(({ link, prevRel }) => {
+        link.rel = prevRel;
+      });
+      createdStyles.forEach((style) => {
+        if (style.parentNode) {
+          style.parentNode.removeChild(style);
+        }
+      });
+      setIsGeneratingPdf(false);
+    }
   };
 
   const handleDownloadFixedCode = () => {
@@ -1178,10 +1432,15 @@ export default function App() {
                       </button>
                       <button 
                         onClick={handlePrintPDF}
-                        className="p-1.5 text-zinc-500 hover:text-white transition-colors"
-                        title="Download Analysis PDF"
+                        disabled={isGeneratingPdf}
+                        className="p-1.5 text-zinc-500 hover:text-emerald-500 transition-colors disabled:opacity-40"
+                        title={pdfReady ? "Instant PDF Download (Precompiled)" : "Download Certified Auditor PDF"}
                       >
-                        <FileJson className="w-3.5 h-3.5" />
+                        {isGeneratingPdf ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-500" />
+                        ) : (
+                          <FileText className={`w-3.5 h-3.5 ${pdfReady ? 'text-emerald-400 animate-pulse' : 'text-emerald-500'}`} />
+                        )}
                       </button>
                     </div>
                   )}
@@ -2135,17 +2394,34 @@ export default function App() {
                     <span>Report Persistence: SESSION_ONLY</span>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-lg">
+                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-2xl">
+                    <button 
+                      onClick={handlePrintPDF}
+                      disabled={isGeneratingPdf}
+                      className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 hover:from-emerald-400 hover:to-indigo-400 text-zinc-950 hover:text-black hover:scale-[1.01] transition-all uppercase font-bold text-[10px] sm:text-[11px] tracking-widest sm:tracking-[0.15em] shadow-lg shadow-emerald-500/20 whitespace-nowrap cursor-pointer disabled:opacity-50"
+                    >
+                      {isGeneratingPdf ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin text-zinc-950" />
+                          <span>Compiling PDF...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Download className="w-4 h-4 text-zinc-950 group-hover:scale-110 transition-transform" />
+                          <span>{pdfReady ? 'Instant PDF Download' : 'Download PDF Report'}</span>
+                        </>
+                      )}
+                    </button>
                     <button 
                       onClick={handleDownloadMarkdown}
-                      className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-[10px] sm:text-[11px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all uppercase font-bold tracking-widest sm:tracking-[0.2em] shadow-lg shadow-white/5 whitespace-nowrap"
+                      className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-[10px] sm:text-[11px] text-zinc-300 hover:bg-white/10 hover:border-white/20 transition-all uppercase font-bold tracking-widest sm:tracking-[0.12em] shadow-lg shadow-white/5 whitespace-nowrap cursor-pointer"
                     >
-                      <Download className="w-4 h-4 text-emerald-500 group-hover:scale-110 transition-transform" />
-                      <span>Download Report</span>
+                      <FileText className="w-4 h-4 text-emerald-500 group-hover:scale-110 transition-transform" />
+                      <span>Markdown Report</span>
                     </button>
                     <button 
                       onClick={() => { setReview(null); setCode(''); }}
-                      className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-8 py-4 rounded-xl border border-blue-500/30 text-[10px] sm:text-[11px] text-blue-400 hover:bg-blue-500 hover:text-white transition-all uppercase font-bold tracking-widest sm:tracking-[0.2em] whitespace-nowrap"
+                      className="group w-full sm:flex-1 flex items-center justify-center gap-3 px-4 sm:px-6 py-4 rounded-xl border border-blue-500/30 text-[10px] sm:text-[11px] text-blue-400 hover:bg-blue-500 hover:text-white transition-all uppercase font-bold tracking-widest sm:tracking-[0.12em] whitespace-nowrap cursor-pointer"
                     >
                       <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
                       <span>New Audit</span>
@@ -2315,6 +2591,17 @@ export default function App() {
       {review && (
         <div className="print-watermark">
           Nexis Principal Review
+        </div>
+      )}
+      
+      {/* Hidden offscreen node for canvas rendering capture */}
+      {review && (
+        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', pointerEvents: 'none' }}>
+          <ReportPDFTemplate 
+            review={review} 
+            operatorName={completeNameInput || user?.displayName || user?.email || "Guest Operator"} 
+            dateString={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) + " UTC"} 
+          />
         </div>
       )}
     </div>

@@ -28,7 +28,9 @@ import {
   UserPlus,
   Rocket,
   ExternalLink,
-  Mail
+  Mail,
+  Download,
+  FileText
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { PLATFORM_FAQS, SECURITY_FAQS, FAQ_SCHEMA } from '../constants/faqs';
@@ -42,6 +44,35 @@ interface LandingPageProps {
   onClearError?: () => void;
   onEnterGuestSandbox?: () => void;
 }
+
+const FaqItem = ({ faq, index, isSecurity = false }: { faq: any, index: number, isSecurity?: boolean }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const number = typeof faq.id === 'number' 
+    ? (faq.id < 10 ? `0${faq.id}` : faq.id) 
+    : (isSecurity ? index + 10 : (index + 1 < 10 ? `0${index + 1}` : index + 1));
+
+  return (
+    <div className="group border-b border-white/5 pb-6 last:border-0 last:pb-0">
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="w-full text-left flex items-center justify-between focus:outline-none cursor-pointer"
+      >
+        <h3 className="text-md font-bold text-white flex items-center gap-3">
+          <span className="text-emerald-500 font-mono text-sm">
+            {number}.
+          </span>
+          {faq.q}
+        </h3>
+        <ChevronDown className={cn("w-5 h-5 text-zinc-500 transition-transform duration-300", isOpen && "rotate-180")} />
+      </button>
+      <div className={cn("overflow-hidden transition-all duration-300", isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0")}>
+        <p className="text-zinc-400 text-sm leading-relaxed pl-8">
+          {faq.a}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export const LandingPage: React.FC<LandingPageProps> = ({ 
   onEnterWorkspace, 
@@ -129,8 +160,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
           >
-            The Iron Guard for <br/>
-            <span className="text-emerald-500">Enterprise Codebases.</span>
+            Instant, Downloadable <br/>
+            <span className="bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">Comprehensive Code Audits.</span>
           </motion.h1>
           
           <motion.p 
@@ -139,11 +170,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             transition={{ delay: 0.2 }}
             className="text-lg text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Nexis is a Principal-level Advanced Code Auditor & Debug Engine that detects architectural risks, memory leaks, and compliance gaps. Unlike general analysis, it uses a Proof-Based Protocol to eliminate false positives and provide evidence-backed security reports.
+            Nexis doesn't just show advice on a screen. We generate a Comprehensive Final Code Audit Report that you can instantly download, covering every single aspect of your codebase—vulnerabilities, optimizations, architecture, and compliance.
             <br/><br/>
-            Beyond detection, Nexis automatically refactors and repairs entire codebases using Principal-grade optimization directives. It transforms vulnerable logic, inefficient architecture, and legacy systems into production-ready, scalable, and maintainable software, while preserving system integrity and engineering standards.
+            Whether you are from the biggest companies, ambitious builders, or fast-scaling startups, Nexis is the definitive tool you've been searching for. With a Zero-Friction/No-Auth audit, you get immediate, free web-based scanning without forcing you to install heavy IDE extensions or create accounts.
             <br/><br/>
-            Built for modern developers, startups, and enterprise teams that demand secure, high-performance software at scale.
+            Equipped with Autonomous Refactoring and a Proof-Based Security Protocol, we actively rewrite vulnerable code into modern components and provide programmatic evidence to eliminate AI hallucinations. Download your report today and share it securely with clients, managers, or teams.
           </motion.p>
           
           {error && (
@@ -239,17 +270,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <h2 className="text-2xl font-bold text-white uppercase tracking-widest mb-16 text-center">Platform FAQ</h2>
           <div className="space-y-12">
             {PLATFORM_FAQS.map((faq, i) => (
-              <div key={i} className="group">
-                <h3 className="text-md font-bold text-white mb-3 flex items-center gap-3">
-                  <span className="text-emerald-500 font-mono">
-                    {typeof faq.id === 'number' ? (faq.id < 10 ? `0${faq.id}` : faq.id) : (i + 1 < 10 ? `0${i + 1}` : i + 1)}.
-                  </span>
-                  {faq.q}
-                </h3>
-                <p className="text-zinc-500 text-sm leading-relaxed pl-8 group-hover:text-zinc-400 transition-colors">
-                  {faq.a}
-                </p>
-              </div>
+              <FaqItem key={i} faq={faq} index={i} />
             ))}
           </div>
         </div>
@@ -274,6 +295,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </thead>
               <tbody className="divide-y divide-white/5">
                 {[
+                  { name: 'Downloadable Final Report', generic: 'Screen-Only Output', sentinel: 'Comprehensive PDF Audit' },
                   { name: 'Proof-based findings', generic: 'Probabilistic', sentinel: 'Verified Evidence' },
                   { name: 'Memory leak tracing', generic: 'Common Patterns', sentinel: 'Deep Flow Analysis' },
                   { name: 'Race condition detection', generic: 'None / Limited', sentinel: 'Multi-State Tracking' },
@@ -520,10 +542,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
             <div className="max-w-4xl space-y-8">
                <div className="w-12 h-1 bg-emerald-500 rounded-full" />
-               <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.8]">Principal-Level <br/><span className="text-zinc-600">Audit Reports.</span></h2>
-               <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">Cinema-grade reporting engine designed for executive decision-makers and high-level engineering leads.</p>
+               <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.8]">Comprehensive <br/><span className="text-zinc-600">Downloadable Reports.</span></h2>
+               <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">Generate a complete, everything-covered final audit document ready to instantly download and share with clients, managers, or teams. Cinema-grade reporting designed for executive decision-makers.</p>
             </div>
-            <button className="px-8 py-4 bg-emerald-500 text-zinc-950 font-black uppercase tracking-widest text-[10px] rounded-2xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(16,185,129,0.2)]">Generate Sample Report</button>
+            <button className="px-8 py-4 bg-emerald-500 text-zinc-950 font-black uppercase tracking-widest text-[10px] rounded-2xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(16,185,129,0.2)] flex items-center gap-2">
+              <Download className="w-4 h-4" />
+              Download Sample Report
+            </button>
           </div>
 
           <div className="glass rounded-[64px] border border-white/10 overflow-hidden shadow-[0_80px_160px_rgba(0,0,0,0.8)] bg-zinc-900/20 relative group/dashboard">
@@ -815,20 +840,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
              {[
-               { icon: <Database className="w-6 h-6" />, t: "No Persistence", d: "Code exists only in volatile, isolated RAM during analysis." },
-               { icon: <RotateCcw className="w-6 h-6" />, t: "Shielded Learning", d: "Your intellectual property never enters our model datasets." },
-               { icon: <Layers className="w-6 h-6" />, t: "Container Isolation", d: "Each audit runs in a hardened, fresh compute environment." },
-               { icon: <Lock className="w-6 h-6" />, t: "Post-quantum Ready", d: "Military-grade TLS 1.3 encryption for all data in transit." },
-               { icon: <Server className="w-6 h-6" />, t: "Volatile Telemetry", d: "System logs are purged automatically every 30 seconds." },
-               { icon: <Fingerprint className="w-6 h-6" />, t: "Anonymized Entry", d: "PII and hardcoded secrets scrubbed before analysis." }
+               { icon: <Database className="w-8 h-8 text-emerald-400 group-hover/pcard:text-emerald-300 transition-colors" />, bg: "bg-emerald-500/10 border-emerald-500/20", t: "Zero-Friction Audit", d: "Immediate, free web-based scanning. No heavy IDE extensions or account creation forced." },
+               { icon: <RotateCcw className="w-8 h-8 text-blue-400 group-hover/pcard:text-blue-300 transition-colors" />, bg: "bg-blue-500/10 border-blue-500/20", t: "Autonomous Refactor", d: "Actively rewrites vulnerable or legacy code into modern, production-ready components." },
+               { icon: <Layers className="w-8 h-8 text-indigo-400 group-hover/pcard:text-indigo-300 transition-colors" />, bg: "bg-indigo-500/10 border-indigo-500/20", t: "Container Isolation", d: "Each audit runs in a hardened, fresh compute environment." },
+               { icon: <Lock className="w-8 h-8 text-purple-400 group-hover/pcard:text-purple-300 transition-colors" />, bg: "bg-purple-500/10 border-purple-500/20", t: "Post-quantum Ready", d: "Military-grade TLS 1.3 encryption for all data in transit." },
+               { icon: <Server className="w-8 h-8 text-rose-400 group-hover/pcard:text-rose-300 transition-colors" />, bg: "bg-rose-500/10 border-rose-500/20", t: "Volatile Telemetry", d: "System logs are purged automatically every 30 seconds." },
+               { icon: <Fingerprint className="w-8 h-8 text-amber-400 group-hover/pcard:text-amber-300 transition-colors" />, bg: "bg-amber-500/10 border-amber-500/20", t: "Anonymized Entry", d: "PII and hardcoded secrets scrubbed before analysis." }
              ].map((p, i) => (
-               <div key={i} className="p-12 glass rounded-[56px] border-white/5 space-y-8 hover:border-emerald-500/30 transition-all hover:bg-white/[0.02] group/pcard shadow-2xl">
-                  <div className="text-emerald-500 inline-block p-5 bg-emerald-500/10 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform">
+               <div key={i} className="p-12 glass rounded-[56px] border border-white/5 space-y-8 hover:border-white/20 transition-all hover:bg-white/[0.04] group/pcard shadow-2xl">
+                  <div className={cn("inline-block p-5 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform border", p.bg)}>
                      {p.icon}
                   </div>
                   <div className="space-y-4">
-                     <h4 className="text-white font-black text-2xl tracking-tight leading-none">{p.t}</h4>
-                     <p className="text-zinc-600 text-sm font-mono leading-relaxed">{p.d}</p>
+                     <h4 className="text-white font-black text-2xl tracking-tight leading-none group-hover/pcard:text-white transition-colors">{p.t}</h4>
+                     <p className="text-zinc-500 text-sm font-mono leading-relaxed group-hover/pcard:text-zinc-400 transition-colors">{p.d}</p>
                   </div>
                </div>
              ))}
@@ -858,17 +883,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <h2 className="text-2xl font-bold text-white uppercase tracking-widest mb-16 text-center">Security & Mission</h2>
           <div className="space-y-12">
             {SECURITY_FAQS.map((faq, i) => (
-              <div key={i} className="group">
-                <h3 className="text-md font-bold text-white mb-3 flex items-center gap-3">
-                  <span className="text-emerald-500 font-mono">
-                    {typeof faq.id === 'number' ? (faq.id < 10 ? `0${faq.id}` : faq.id) : (i + 10)}.
-                  </span>
-                  {faq.q}
-                </h3>
-                <p className="text-zinc-500 text-sm leading-relaxed pl-8 group-hover:text-zinc-400 transition-colors">
-                  {faq.a}
-                </p>
-              </div>
+              <FaqItem key={i} faq={faq} index={i} isSecurity />
             ))}
           </div>
         </div>

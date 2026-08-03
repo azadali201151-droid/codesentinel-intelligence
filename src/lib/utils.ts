@@ -134,3 +134,160 @@ export function downloadFile(content: string, fileName: string, contentType: str
   a.click();
   URL.revokeObjectURL(a.href);
 }
+
+export function replaceOklch(cssText: string | null): string {
+  if (!cssText) return '';
+  
+  // 1. Convert oklch to hsl/hsla
+  let output = cssText.replace(/oklch\(\s*([0-9.]+%?)\s*[\s,]\s*([0-9.]+%?)\s*[\s,]\s*([-+0-9.]+%?)(?:\s*[\/,\s]\s*([0-9.]+%?))?\s*\)/g, (match, lStr, cStr, hStr, aStr) => {
+    try {
+      // Parse L
+      let l = parseFloat(lStr);
+      if (lStr.includes('%')) {
+        // already percentage
+      } else {
+        l = l * 100; // e.g. 0.79 -> 79
+      }
+      
+      // Parse C (0 to 0.4 usually)
+      const c = parseFloat(cStr);
+      const s = Math.min(100, Math.max(0, c * 250)); // chroma to saturation percentage approximation
+      
+      // Parse H (0 to 360)
+      const h = parseFloat(hStr);
+      
+      // Parse Alpha
+      if (aStr) {
+        let a = parseFloat(aStr);
+        if (aStr.includes('%')) {
+          a = a / 100;
+        }
+        return `hsla(${h}, ${Math.round(s)}%, ${Math.round(l)}%, ${a})`;
+      } else {
+        return `hsl(${h}, ${Math.round(s)}%, ${Math.round(l)}%)`;
+      }
+    } catch {
+      return 'rgb(16, 185, 129)'; // safe fallback emerald-500
+    }
+  });
+
+  // 2. Convert oklab to hsl/hsla
+  output = output.replace(/oklab\(\s*([0-9.]+%?)\s*[\s,]\s*([-+0-9.]+%?)\s*[\s,]\s*([-+0-9.]+%?)(?:\s*[\/,\s]\s*([0-9.]+%?))?\s*\)/g, (match, lStr, aValStr, bValStr, aStr) => {
+    try {
+      let l = parseFloat(lStr);
+      if (lStr.includes('%')) {
+        // already percentage
+      } else {
+        l = l * 100;
+      }
+      
+      const aVal = parseFloat(aValStr);
+      const bVal = parseFloat(bValStr);
+      
+      // Convert Cartesian (a, b) to Cylindrical (chroma C, hue H)
+      const c = Math.sqrt(aVal * aVal + bVal * bVal);
+      let h = (Math.atan2(bVal, aVal) * 180) / Math.PI;
+      h = (h + 360) % 360;
+      
+      const s = Math.min(100, Math.max(0, c * 250)); // chroma to saturation approximation
+
+      if (aStr) {
+        let a = parseFloat(aStr);
+        if (aStr.includes('%')) {
+          a = a / 100;
+        }
+        return `hsla(${h}, ${Math.round(s)}%, ${Math.round(l)}%, ${a})`;
+      } else {
+        return `hsl(${h}, ${Math.round(s)}%, ${Math.round(l)}%)`;
+      }
+    } catch {
+      return 'rgb(16, 185, 129)';
+    }
+  });
+
+  return output;
+}
+
+export function cleanGlobalStyles() {
+  // Process all <style> elements
+  const styles = document.querySelectorAll('style');
+  styles.forEach((style) => {
+    if (style.textContent && (style.textContent.includes('oklch') || style.textContent.includes('oklab')) && !style.classList.contains('nexis-inlined')) {
+      style.textContent = replaceOklch(style.textContent);
+    }
+  });
+
+  // Process all same-origin <link> elements to inline safe versions
+  const links = document.querySelectorAll('link[rel="stylesheet"]');
+  links.forEach(async (linkNode) => {
+    const link = linkNode as HTMLLinkElement;
+    if (link.href && (link.href.startsWith(window.location.origin) || link.href.startsWith('/')) && !link.classList.contains('nexis-processed')) {
+      try {
+        link.classList.add('nexis-processed');
+        const res = await fetch(link.href);
+        if (res.ok) {
+          const rawText = await res.text();
+          const cleanText = replaceOklch(rawText);
+          const styleEl = document.createElement('style');
+          styleEl.classList.add('nexis-inlined');
+          styleEl.textContent = cleanText;
+          document.head.appendChild(styleEl);
+          
+          // disable/remove link
+          link.disabled = true;
+          if (link.parentNode) {
+            link.parentNode.removeChild(link);
+          }
+        }
+      } catch (err) {
+        console.warn("Clean style inlining failed:", link.href, err);
+      }
+    }
+  });
+}
+
+export function observeAndCleanStyles() {
+  if (typeof window === 'undefined') return;
+  
+  // Initial run
+  cleanGlobalStyles();
+  
+  const observer = new MutationObserver((mutations) => {
+    let shouldScan = false;
+    for (const m of mutations) {
+      if (m.type === 'childList') {
+        m.addedNodes.forEach(node => {
+          if (node.nodeName === 'STYLE' || node.nodeName === 'LINK') {
+            shouldScan = true;
+          }
+        });
+      } else if (m.type === 'attributes' && m.attributeName === 'style') {
+        const elem = m.target as HTMLElement;
+        if (elem && typeof elem.getAttribute === 'function') {
+          const styleAttr = elem.getAttribute('style');
+          if (styleAttr && (styleAttr.includes('oklch') || styleAttr.includes('oklab'))) {
+            observer.disconnect();
+            elem.setAttribute('style', replaceOklch(styleAttr));
+            observer.observe(document.documentElement, {
+              childList: true,
+              subtree: true,
+              attributes: true,
+              attributeFilter: ['style']
+            });
+          }
+        }
+      }
+    }
+    if (shouldScan) {
+      cleanGlobalStyles();
+    }
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['style']
+  });
+}
+

@@ -109,9 +109,9 @@ async function testConnection() {
   } catch (error) {
     if(error instanceof Error) {
       if (error.message.includes('the client is offline')) {
-        console.error("Firestore is offline. This usually means the browser cannot reach Firestore or the Database ID is incorrect.");
+        console.warn("Firestore is offline. This usually means the browser cannot reach Firestore or the Database ID is incorrect.");
       } else {
-        console.error("Firestore connection error:", error.message);
+        console.warn("Firestore connection warning:", error.message);
       }
     }
   }
