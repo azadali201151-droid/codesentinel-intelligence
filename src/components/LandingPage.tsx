@@ -58,7 +58,7 @@ const FaqItem = ({ faq, index, isSecurity = false }: { faq: any, index: number, 
         className="w-full text-left flex items-center justify-between focus:outline-none cursor-pointer"
       >
         <h3 className="text-md font-bold text-white flex items-center gap-3">
-          <span className="text-emerald-500 font-mono text-sm">
+          <span className="text-emerald-500 font-mono">
             {number}.
           </span>
           {faq.q}
@@ -66,7 +66,7 @@ const FaqItem = ({ faq, index, isSecurity = false }: { faq: any, index: number, 
         <ChevronDown className={cn("w-5 h-5 text-zinc-500 transition-transform duration-300", isOpen && "rotate-180")} />
       </button>
       <div className={cn("overflow-hidden transition-all duration-300", isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0")}>
-        <p className="text-zinc-400 text-sm leading-relaxed pl-8">
+        <p className="text-zinc-500 text-sm leading-relaxed pl-8 group-hover:text-zinc-400 transition-colors">
           {faq.a}
         </p>
       </div>
@@ -161,7 +161,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
           >
             Instant, Downloadable <br/>
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">Comprehensive Code Audits.</span>
+            <span className="text-emerald-500">Comprehensive Code Audits.</span>
           </motion.h1>
           
           <motion.p 
@@ -840,20 +840,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
              {[
-               { icon: <Database className="w-8 h-8 text-emerald-400 group-hover/pcard:text-emerald-300 transition-colors" />, bg: "bg-emerald-500/10 border-emerald-500/20", t: "Zero-Friction Audit", d: "Immediate, free web-based scanning. No heavy IDE extensions or account creation forced." },
-               { icon: <RotateCcw className="w-8 h-8 text-blue-400 group-hover/pcard:text-blue-300 transition-colors" />, bg: "bg-blue-500/10 border-blue-500/20", t: "Autonomous Refactor", d: "Actively rewrites vulnerable or legacy code into modern, production-ready components." },
-               { icon: <Layers className="w-8 h-8 text-indigo-400 group-hover/pcard:text-indigo-300 transition-colors" />, bg: "bg-indigo-500/10 border-indigo-500/20", t: "Container Isolation", d: "Each audit runs in a hardened, fresh compute environment." },
-               { icon: <Lock className="w-8 h-8 text-purple-400 group-hover/pcard:text-purple-300 transition-colors" />, bg: "bg-purple-500/10 border-purple-500/20", t: "Post-quantum Ready", d: "Military-grade TLS 1.3 encryption for all data in transit." },
-               { icon: <Server className="w-8 h-8 text-rose-400 group-hover/pcard:text-rose-300 transition-colors" />, bg: "bg-rose-500/10 border-rose-500/20", t: "Volatile Telemetry", d: "System logs are purged automatically every 30 seconds." },
-               { icon: <Fingerprint className="w-8 h-8 text-amber-400 group-hover/pcard:text-amber-300 transition-colors" />, bg: "bg-amber-500/10 border-amber-500/20", t: "Anonymized Entry", d: "PII and hardcoded secrets scrubbed before analysis." }
+               { icon: <Database className="w-6 h-6" />, t: "Zero-Friction Audit", d: "Immediate, free web-based scanning. No heavy IDE extensions or account creation forced." },
+               { icon: <RotateCcw className="w-6 h-6" />, t: "Autonomous Refactor", d: "Actively rewrites vulnerable or legacy code into modern, production-ready components." },
+               { icon: <Layers className="w-6 h-6" />, t: "Container Isolation", d: "Each audit runs in a hardened, fresh compute environment." },
+               { icon: <Lock className="w-6 h-6" />, t: "Post-quantum Ready", d: "Military-grade TLS 1.3 encryption for all data in transit." },
+               { icon: <Server className="w-6 h-6" />, t: "Volatile Telemetry", d: "System logs are purged automatically every 30 seconds." },
+               { icon: <Fingerprint className="w-6 h-6" />, t: "Anonymized Entry", d: "PII and hardcoded secrets scrubbed before analysis." }
              ].map((p, i) => (
-               <div key={i} className="p-12 glass rounded-[56px] border border-white/5 space-y-8 hover:border-white/20 transition-all hover:bg-white/[0.04] group/pcard shadow-2xl">
-                  <div className={cn("inline-block p-5 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform border", p.bg)}>
+               <div key={i} className="p-12 glass rounded-[56px] border-white/5 space-y-8 hover:border-emerald-500/30 transition-all hover:bg-white/[0.02] group/pcard shadow-2xl">
+                  <div className="text-emerald-500 inline-block p-5 bg-emerald-500/10 rounded-2xl shadow-xl group-hover/pcard:scale-110 transition-transform">
                      {p.icon}
                   </div>
                   <div className="space-y-4">
-                     <h4 className="text-white font-black text-2xl tracking-tight leading-none group-hover/pcard:text-white transition-colors">{p.t}</h4>
-                     <p className="text-zinc-500 text-sm font-mono leading-relaxed group-hover/pcard:text-zinc-400 transition-colors">{p.d}</p>
+                     <h4 className="text-white font-black text-2xl tracking-tight leading-none">{p.t}</h4>
+                     <p className="text-zinc-600 text-sm font-mono leading-relaxed">{p.d}</p>
                   </div>
                </div>
              ))}
